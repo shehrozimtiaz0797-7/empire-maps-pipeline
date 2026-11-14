@@ -25,7 +25,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # 2 videos a day. Calls outside these Malaysia-time slots (2:50 am and 8:50 am, i.e. US/Europe evening) stop here.
+  # 4 videos a day. Calls outside these Malaysia-time slots (2:50 am, 8:50 am, 12:50 pm, 3:50 pm) stop here.
   gate:
     runs-on: ubuntu-latest
     outputs:
@@ -35,7 +35,7 @@ jobs:
         run: |
           H=$(TZ=Asia/Kuala_Lumpur date -d '-20 min' +%H)
           GO=0
-          for S in 02 08; do [ "$H" = "$S" ] && GO=1; done
+          for S in 02 08 12 15; do [ "$H" = "$S" ] && GO=1; done
           [ "${{ inputs.force }}" = "true" ] && GO=1
           echo "slot hour $H -> go=$GO"
           echo "go=$GO" >> "$GITHUB_OUTPUT"
@@ -100,6 +100,21 @@ jobs:
             git pull --rebase || true
             git push || echo "Could not save history"
           fi
+      - name: Save a preview for checking (qa branch, newest video only)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          D=$(ls -d output/*/ 2>/dev/null | tail -1)
+          if [ -z "$D" ] || [ ! -f "$D/final.mp4" ]; then echo "no video"; exit 0; fi
+          mkdir -p /tmp/qa
+          cp "$D/final.mp4" "$D/script.json" "$D/render.json" /tmp/qa/ 2>/dev/null || true
+          cp logs/pipeline.log /tmp/qa/ 2>/dev/null || true
+          cd /tmp/qa
+          git init -q -b qa
+          git add .
+          git -c user.name=empire-maps-bot -c user.email=empire-maps-bot@users.noreply.github.com commit -qm "preview $(date +'%Y-%m-%d %H:%M')"
+          git push -qf "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" qa || echo "could not save preview"
       - name: Keep the video for 3 days (download from this run page)
         if: always()
         uses: actions/upload-artifact@v4
