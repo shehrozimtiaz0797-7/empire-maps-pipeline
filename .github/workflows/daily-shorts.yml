@@ -1,0 +1,113 @@
+name: Empire Maps daily Shorts
+
+on:
+  # Started by cron-job.org (GitHub's own schedule is often late), or by hand from the Actions tab.
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Run now even outside the daily slots"
+        type: boolean
+        default: false
+      topic:
+        description: "Optional empire (e.g. ottoman, roman, mongol, british). Leave empty for the next one"
+        required: false
+        default: ""
+      upload:
+        description: "Upload to YouTube"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: empire-maps-daily
+  cancel-in-progress: false
+
+jobs:
+  # 2 videos a day. Calls outside these Malaysia-time slots (2:50 am and 8:50 am, i.e. US/Europe evening) stop here.
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      go: ${{ steps.slot.outputs.go }}
+    steps:
+      - id: slot
+        run: |
+          H=$(TZ=Asia/Kuala_Lumpur date -d '-20 min' +%H)
+          GO=0
+          for S in 02 08; do [ "$H" = "$S" ] && GO=1; done
+          [ "${{ inputs.force }}" = "true" ] && GO=1
+          echo "slot hour $H -> go=$GO"
+          echo "go=$GO" >> "$GITHUB_OUTPUT"
+
+  make-and-upload:
+    needs: gate
+    if: needs.gate.outputs.go == '1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      TZ: Asia/Kuala_Lumpur
+      FFMPEG_PATH: ffmpeg
+      PYTHON: python
+      PRIVACY: public
+      YT_CATEGORY: "27"
+      GEMINI_TEXT_MODEL: gemini-3.8-flash
+      GEMINI_TTS_MODEL: gemini-3.8-flash-tts
+      # documentary voices, one per video in turn
+      GEMINI_TTS_VOICE: Charon,Orus
+      VOICE_PITCH: "0.97"
+      VOICE_PACE: "1.03"
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install drawing and music tools
+        run: pip install -q pillow numpy
+      - name: Keep the border maps between runs
+        uses: actions/cache@v4
+        with:
+          path: data
+          key: borders-v1
+      - name: Make and upload a Short
+        env:
+          TOPIC: ${{ inputs.topic }}
+          DO_UPLOAD: ${{ inputs.upload }}
+        run: |
+          set --
+          if [ -n "$TOPIC" ]; then set -- "$@" --topic "$TOPIC"; fi
+          if [ "$DO_UPLOAD" = "false" ]; then set -- "$@" --no-upload; fi
+          node make-video.js "$@"
+      - name: Save history (so empires are not repeated)
+        if: always()
+        run: |
+          if [ -f history.json ]; then
+            git config user.name "empire-maps-bot"
+            git config user.email "empire-maps-bot@users.noreply.github.com"
+            git add history.json
+            git commit -m "Update history $(date +'%Y-%m-%d %H:%M')" || echo "Nothing to save"
+            git pull --rebase || true
+            git push || echo "Could not save history"
+          fi
+      - name: Keep the video for 3 days (download from this run page)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: empire-maps-${{ github.run_number }}
+          path: |
+            output/*/final.mp4
+            output/*/script.json
+            logs/pipeline.log
+          retention-days: 3
+          if-no-files-found: ignore

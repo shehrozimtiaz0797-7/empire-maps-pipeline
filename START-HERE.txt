@@ -1,0 +1,40 @@
+EMPIRE MAPS - setup (ek baar, ~20 minute)
+==========================================
+
+1) NAYA GEMINI KEY (alag project, taake doosre channel ki limit na kate)
+   - aistudio.google.com/apikey kholen (Only Geniuses wale Google account se)
+   - "Create API key" -> "Create API key in new project"
+   - Key copy karein (kisi ko na bhejein)
+
+2) YOUTUBE LOGIN TOKEN (Empire Maps channel ke liye)
+   - Is repo ka ZIP download karein: GitHub -> Code -> Download ZIP, aur unzip karein
+   - Only Geniuses wale folder se ".env" file copy karke is folder mein daal dein
+     (us mein YT_CLIENT_ID aur YT_CLIENT_SECRET pehle se hain)
+   - Is folder mein terminal kholen aur chalayein:
+        node auth.js
+     Browser khulega: Only Geniuses wala Google account chunein, phir channel list mein
+     "Empire Maps" chunein (Only Geniuses NAHI). Allow karein.
+     Terminal mein likha aayega: Connected to YouTube channel: Empire Maps
+   - Phir chalayein:
+        node print-secrets.js
+     Yeh YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN dikhayega.
+
+3) GITHUB SECRETS
+   - GitHub -> empire-maps-pipeline -> Settings -> Secrets and variables -> Actions
+     -> New repository secret. Yeh 4 banayein:
+        GEMINI_API_KEY      (step 1 wala naya key)
+        YT_CLIENT_ID        (print-secrets.js se)
+        YT_CLIENT_SECRET    (print-secrets.js se)
+        YT_REFRESH_TOKEN    (print-secrets.js se)
+
+4) CRON-JOB.ORG (roz 2 videos)
+   - Doosre channels ki tarah 2 naye jobs banayein, bilkul wahi Headers aur Body:
+        URL:  https://api.github.com/repos/shehrozimtiaz0797-7/empire-maps-pipeline/actions/workflows/daily-shorts.yml/dispatches
+        Waqt (Asia/Kuala_Lumpur):  2:50 AM  aur  8:50 AM
+        Method: POST,  Body: {"ref":"main"}
+   - Agar aap ka GitHub token (cron-trigger) sirf kuch repos ke liye bana tha, to GitHub ->
+     Settings -> Developer settings -> Fine-grained tokens -> cron-trigger -> Repository access
+     mein empire-maps-pipeline bhi add karein.
+
+Bas. Baqi sab khud chalega. Pehli video test ke liye:
+GitHub -> Actions -> "Empire Maps daily Shorts" -> Run workflow -> force tick karein -> Run.

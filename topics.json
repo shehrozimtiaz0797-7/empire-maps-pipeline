@@ -1,0 +1,502 @@
+[
+ {
+  "id": "ottoman",
+  "label": "OTTOMAN EMPIRE",
+  "name": "the Ottoman Empire",
+  "names": [
+   "Ottoman Empire",
+   "Ottoman Sultanate"
+  ],
+  "years": [
+   1400,
+   1492,
+   1530,
+   1600,
+   1700,
+   1800,
+   1878,
+   1914,
+   1920
+  ],
+  "peak": 1600
+ },
+ {
+  "id": "roman",
+  "label": "ROMAN EMPIRE",
+  "name": "the Roman Empire",
+  "names": [
+   "Rome",
+   "Roman Republic",
+   "Roman Empire"
+  ],
+  "years": [
+   -400,
+   -300,
+   -200,
+   -100,
+   -1,
+   100,
+   200
+  ],
+  "peak": 200
+ },
+ {
+  "id": "mongol",
+  "label": "MONGOL EMPIRE",
+  "name": "the Mongol Empire",
+  "names": [
+   "Mongols",
+   "Mongol Empire",
+   "Great Khanate",
+   "Khanate of the Golden Horde",
+   "Ilkhanate",
+   "Chagatai Khanate"
+  ],
+  "years": [
+   1100,
+   1200,
+   1279
+  ],
+  "peak": 1279
+ },
+ {
+  "id": "british",
+  "label": "BRITISH EMPIRE",
+  "name": "the British Empire",
+  "names": [
+   "United Kingdom",
+   "United Kingdom of Great Britain and Ireland",
+   "English territory",
+   "England"
+  ],
+  "years": [
+   1700,
+   1783,
+   1815,
+   1878,
+   1914,
+   1920,
+   1945,
+   1960
+  ],
+  "peak": 1920
+ },
+ {
+  "id": "spanish",
+  "label": "SPANISH EMPIRE",
+  "name": "the Spanish Empire",
+  "names": [
+   "Spain",
+   "Castille",
+   "Castile",
+   "Viceroyalty of New Spain",
+   "Viceroyalty of Peru",
+   "Viceroyalty of New Granada",
+   "Viceroyalty of the Río de la Plata",
+   "Cuba (Spain)",
+   "Hispaniola (Spain)",
+   "Florida (Spain)",
+   "Philippines (Spain)"
+  ],
+  "years": [
+   1400,
+   1492,
+   1530,
+   1600,
+   1700,
+   1800,
+   1878,
+   1914
+  ],
+  "peak": 1800
+ },
+ {
+  "id": "russian",
+  "label": "RUSSIA",
+  "name": "Russia",
+  "names": [
+   "Grand Duchy of Moscow",
+   "Tsardom of Muscovy",
+   "Russian Empire"
+  ],
+  "years": [
+   1300,
+   1492,
+   1530,
+   1600,
+   1700,
+   1800,
+   1914
+  ],
+  "peak": 1914
+ },
+ {
+  "id": "mughal",
+  "label": "MUGHAL EMPIRE",
+  "name": "the Mughal Empire",
+  "names": [
+   "Mughal Empire"
+  ],
+  "years": [
+   1530,
+   1600,
+   1650,
+   1700,
+   1715
+  ],
+  "peak": 1700
+ },
+ {
+  "id": "usa",
+  "label": "UNITED STATES",
+  "name": "the United States",
+  "names": [
+   "United States of America",
+   "United States"
+  ],
+  "years": [
+   1783,
+   1800,
+   1815,
+   1878,
+   1900,
+   1960
+  ],
+  "peak": 1960
+ },
+ {
+  "id": "holy_roman",
+  "label": "HOLY ROMAN EMPIRE",
+  "name": "the Holy Roman Empire",
+  "names": [
+   "Holy Roman Empire"
+  ],
+  "years": [
+   1000,
+   1100,
+   1200,
+   1300,
+   1400,
+   1500,
+   1600,
+   1700,
+   1715
+  ],
+  "peak": 1200
+ },
+ {
+  "id": "byzantine",
+  "label": "BYZANTINE EMPIRE",
+  "name": "the Byzantine Empire",
+  "names": [
+   "Eastern Roman Empire",
+   "Byzantine Empire"
+  ],
+  "years": [
+   500,
+   600,
+   700,
+   900,
+   1100,
+   1200,
+   1300,
+   1400
+  ],
+  "peak": 600
+ },
+ {
+  "id": "portuguese",
+  "label": "PORTUGUESE EMPIRE",
+  "name": "the Portuguese Empire",
+  "names": [
+   "Portugal",
+   "Portuguese Brazil",
+   "Portuguese East Africa",
+   "Portuguese Guinea",
+   "Angola (Portugal)",
+   "Mozambique (Portugal)"
+  ],
+  "years": [
+   1400,
+   1500,
+   1530,
+   1600,
+   1700,
+   1800,
+   1914,
+   1945
+  ],
+  "peak": 1700
+ },
+ {
+  "id": "japan",
+  "label": "EMPIRE OF JAPAN",
+  "name": "the Empire of Japan",
+  "names": [
+   "Imperial Japan",
+   "Empire of Japan",
+   "Japan"
+  ],
+  "years": [
+   1800,
+   1878,
+   1900,
+   1914,
+   1930,
+   1938,
+   1960
+  ],
+  "peak": 1938
+ },
+ {
+  "id": "qing",
+  "label": "QING EMPIRE",
+  "name": "the Qing Empire",
+  "names": [
+   "Manchu Empire",
+   "Qing Empire"
+  ],
+  "years": [
+   1650,
+   1700,
+   1715,
+   1783,
+   1815,
+   1900,
+   1914
+  ],
+  "peak": 1783
+ },
+ {
+  "id": "safavid",
+  "label": "SAFAVID EMPIRE",
+  "name": "the Safavid Empire",
+  "names": [
+   "Safavid Empire"
+  ],
+  "years": [
+   1530,
+   1600,
+   1650,
+   1700,
+   1715
+  ],
+  "peak": 1600
+ },
+ {
+  "id": "french",
+  "label": "FRENCH EMPIRE",
+  "name": "the French colonial empire",
+  "names": [
+   "France"
+  ],
+  "years": [
+   1500,
+   1650,
+   1700,
+   1783,
+   1815,
+   1878,
+   1914,
+   1938,
+   1960
+  ],
+  "peak": 1938
+ },
+ {
+  "id": "swedish",
+  "label": "SWEDISH EMPIRE",
+  "name": "the Swedish Empire",
+  "names": [
+   "Sweden"
+  ],
+  "years": [
+   1530,
+   1600,
+   1650,
+   1700,
+   1715,
+   1783
+  ],
+  "peak": 1650
+ },
+ {
+  "id": "poland",
+  "label": "POLAND-LITHUANIA",
+  "name": "Poland-Lithuania",
+  "names": [
+   "Poland",
+   "Lithuania",
+   "Poland-Lithuania",
+   "Polish–Lithuanian Commonwealth"
+  ],
+  "years": [
+   1300,
+   1400,
+   1492,
+   1600,
+   1650,
+   1715,
+   1783
+  ],
+  "peak": 1600
+ },
+ {
+  "id": "austria",
+  "label": "HABSBURG AUSTRIA",
+  "name": "the Habsburg Austrian Empire",
+  "names": [
+   "Austrian Empire",
+   "Austria Hungary",
+   "Austro-Hungarian Empire",
+   "Austria"
+  ],
+  "years": [
+   1700,
+   1783,
+   1815,
+   1880,
+   1914,
+   1920
+  ],
+  "peak": 1914
+ },
+ {
+  "id": "germany",
+  "label": "PRUSSIA & GERMANY",
+  "name": "Prussia and Germany",
+  "names": [
+   "Prussia",
+   "German Empire",
+   "Germany"
+  ],
+  "years": [
+   1600,
+   1700,
+   1783,
+   1815,
+   1880,
+   1914,
+   1920,
+   1938
+  ],
+  "peak": 1914
+ },
+ {
+  "id": "byz_ott",
+  "label": "CONSTANTINOPLE",
+  "name": "the fall of Byzantium and the rise of the Ottomans",
+  "names": [
+   "Ottoman Empire"
+  ],
+  "years": [
+   1400,
+   1492,
+   1530,
+   1600
+  ],
+  "peak": 1530
+ },
+ {
+  "id": "khmer",
+  "label": "KHMER EMPIRE",
+  "name": "the Khmer Empire",
+  "names": [
+   "Khmer Empire"
+  ],
+  "years": [
+   900,
+   1000,
+   1100,
+   1200,
+   1300,
+   1400
+  ],
+  "peak": 1200
+ },
+ {
+  "id": "songhai",
+  "label": "SONGHAI EMPIRE",
+  "name": "the Songhai Empire",
+  "names": [
+   "Songhai"
+  ],
+  "years": [
+   1492,
+   1500,
+   1530,
+   1600,
+   1700,
+   1800
+  ],
+  "peak": 1530
+ },
+ {
+  "id": "mali",
+  "label": "MALI EMPIRE",
+  "name": "the Mali Empire",
+  "names": [
+   "Mali"
+  ],
+  "years": [
+   1000,
+   1200,
+   1300,
+   1400,
+   1492,
+   1500
+  ],
+  "peak": 1300
+ },
+ {
+  "id": "delhi",
+  "label": "DELHI SULTANATE",
+  "name": "the Delhi Sultanate",
+  "names": [
+   "Sultanate of Delhi"
+  ],
+  "years": [
+   1200,
+   1279,
+   1300,
+   1400,
+   1492,
+   1500
+  ],
+  "peak": 1300
+ },
+ {
+  "id": "srivijaya",
+  "label": "SRIVIJAYA",
+  "name": "the Srivijaya Empire",
+  "names": [
+   "Srivijaya Empire"
+  ],
+  "years": [
+   800,
+   900,
+   1000,
+   1100,
+   1200,
+   1300,
+   1400
+  ],
+  "peak": 1100
+ },
+ {
+  "id": "carolingian",
+  "label": "CAROLINGIAN EMPIRE",
+  "name": "Charlemagne's Frankish Empire",
+  "names": [
+   "Franks",
+   "Carolingian Empire"
+  ],
+  "years": [
+   400,
+   500,
+   800,
+   900
+  ],
+  "peak": 800
+ }
+]
