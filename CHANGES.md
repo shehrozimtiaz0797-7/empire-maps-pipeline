@@ -7,3 +7,5 @@
 - New suspense music: dark drone, ticking clock + heartbeat, staccato strings that grow with the story, a riser + hit on every year change, war drums from the middle, big impact on the last line, soft limiter so the tension bed is audible.
 - 4 videos a day (owner request): 2:50 am, 8:50 am, 12:50 pm, 3:50 pm Malaysia time.
 - Every run saves its newest video, script and timing to the `qa` branch so it can be checked.
+- Caption timing: line pauses are found on the dry voice (no echo) and each boundary snaps to the nearest real pause; a short '...' pause is asked for between lines. (Before: one missed pause made all timings 'estimated'.)
+- Year counter never shows year 0.

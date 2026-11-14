@@ -108,7 +108,7 @@ jobs:
           D=$(ls -d output/*/ 2>/dev/null | tail -1)
           if [ -z "$D" ] || [ ! -f "$D/final.mp4" ]; then echo "no video"; exit 0; fi
           mkdir -p /tmp/qa
-          cp "$D/final.mp4" "$D/script.json" "$D/render.json" /tmp/qa/ 2>/dev/null || true
+          cp "$D/final.mp4" "$D/script.json" "$D/render.json" "$D/voice.wav" /tmp/qa/ 2>/dev/null || true
           cp logs/pipeline.log /tmp/qa/ 2>/dev/null || true
           cd /tmp/qa
           git init -q -b qa

@@ -224,6 +224,8 @@ def wrap(text, f, width):
 
 def year_text(y):
     y = int(round(y))
+    if y == 0:
+        y = 1  # there is no year 0
     if y < 0:
         return "%d BC" % (-y)
     if y < 1000:
