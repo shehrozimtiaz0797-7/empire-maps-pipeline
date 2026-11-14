@@ -30,7 +30,7 @@ EMPIRE MAPS - setup (ek baar, ~20 minute)
 4) CRON-JOB.ORG (roz 4 videos)
    - Doosre channels ki tarah 4 naye jobs banayein, bilkul wahi Headers aur Body:
         URL:  https://api.github.com/repos/shehrozimtiaz0797-7/empire-maps-pipeline/actions/workflows/daily-shorts.yml/dispatches
-        Waqt (Asia/Kuala_Lumpur):  2:50 AM, 8:50 AM, 12:50 PM, 3:50 PM
+        Waqt (Asia/Kuala_Lumpur):  2:50 AM, 8:50 AM, 12:50 PM, 10:50 PM (ya ek hi job, crontab: 50 2,8,12,22 * * *)
         Method: POST,  Body: {"ref":"main"}
    - Agar aap ka GitHub token (cron-trigger) sirf kuch repos ke liye bana tha, to GitHub ->
      Settings -> Developer settings -> Fine-grained tokens -> cron-trigger -> Repository access

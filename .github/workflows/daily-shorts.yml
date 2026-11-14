@@ -25,7 +25,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # 4 videos a day. Calls outside these Malaysia-time slots (2:50 am, 8:50 am, 12:50 pm, 3:50 pm) stop here.
+  # 4 videos a day. Calls outside these Malaysia-time slots (2:50 am, 8:50 am, 12:50 pm, 10:50 pm) stop here.
   gate:
     runs-on: ubuntu-latest
     outputs:
@@ -35,7 +35,7 @@ jobs:
         run: |
           H=$(TZ=Asia/Kuala_Lumpur date -d '-20 min' +%H)
           GO=0
-          for S in 02 08 12 15; do [ "$H" = "$S" ] && GO=1; done
+          for S in 02 08 12 22; do [ "$H" = "$S" ] && GO=1; done
           [ "${{ inputs.force }}" = "true" ] && GO=1
           echo "slot hour $H -> go=$GO"
           echo "go=$GO" >> "$GITHUB_OUTPUT"
