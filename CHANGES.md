@@ -9,3 +9,4 @@
 - Every run saves its newest video, script and timing to the `qa` branch so it can be checked.
 - Caption timing: line pauses are found on the dry voice (no echo) and each boundary snaps to the nearest real pause; a short '...' pause is asked for between lines. (Before: one missed pause made all timings 'estimated'.)
 - Year counter never shows year 0.
+- Checked the Mongol test video: line pauses 3/3 found and captions start exactly on each spoken line. Music was only 1-3 dB under the voice near the end, so: music 0.8x, stronger ducking (threshold 0.03, ratio 6), softer last-line impact. Voice is now 6-17 dB above the music.

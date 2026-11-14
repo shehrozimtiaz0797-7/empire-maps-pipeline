@@ -180,8 +180,8 @@ while tt < last - 0.2:
 
 # 6) the last line: big impact and a held dark chord
 put(riser(1.4), max(0.5, last - 1.4), 0.8)
-put(boom(4.0, 1.3), last, 1.0)
-put(braam(4.0, D), last, 0.9)
+put(boom(4.0, 1.3), last, 0.85)
+put(braam(4.0, D), last, 0.7)
 tail = TOTAL - last
 nt = int(max(1.0, tail) * SR)
 tt_ = np.arange(nt) / SR

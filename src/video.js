@@ -40,7 +40,7 @@ async function buildVideo(script, voice, dir) {
   if (voice) {
     inputs.push('-i', voice.file);
     filter = `[2:a]aformat=sample_rates=48000:channel_layouts=stereo,adelay=${Math.round(VSTART * 1000)}:all=1,apad,asplit=2[v1][v2];` +
-      `[1:a]volume=1.0[m];[m][v2]sidechaincompress=threshold=0.06:ratio=3:attack=30:release=450[md];` +
+      `[1:a]volume=0.8[m];[m][v2]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=350[md];` +
       `[md][v1]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=9,aresample=48000[aout]`;
   } else {
     filter = '[1:a]loudnorm=I=-14:TP=-1.5,aresample=48000[aout]';
