@@ -496,9 +496,9 @@ for fi in range(nframes):
         pop = 1 + 0.06 * max(0.0, 1 - (t - starts[-1] - 0.8) / 0.3)
         txt = "SUBSCRIBE FOR THE NEXT EMPIRE"
         tw = f_marker.getlength(txt) * pop
-        bx0, bx1, by0, by1 = W / 2 - tw / 2 - 34, W / 2 + tw / 2 + 34, 1802 - 34 * pop, 1802 + 34 * pop
+        bx0, bx1, by0, by1 = W / 2 - tw / 2 - 34, W / 2 + tw / 2 + 34, 1836 - 34 * pop, 1836 + 34 * pop
         d.rounded_rectangle((bx0, by0, bx1, by1), radius=34, fill=(204, 0, 0, a), outline=(255, 255, 255, a), width=3)
-        d.text((W / 2, 1802), txt, font=f_marker, fill=(255, 255, 255, a), anchor="mm")
+        d.text((W / 2, 1836), txt, font=f_marker, fill=(255, 255, 255, a), anchor="mm")
     d.text((W / 2, 1885), "Borders: historical-basemaps (A. Ourednik, GPL-3.0)", font=f_small, fill=(255, 255, 255, 70), anchor="mm")
 
     ff.stdin.write(frame.tobytes())
