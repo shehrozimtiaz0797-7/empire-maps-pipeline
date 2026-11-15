@@ -14,3 +14,4 @@
 
 ## 2026-11-15 (16:30 MY)
 - First day: 4 videos, 707-1,549 views each (Rome 1,549 with 45 likes), but only 1 subscriber. Added a red 'SUBSCRIBE FOR THE NEXT EMPIRE' button from the closing line to the end.
+- Subscribe button REMOVED again the same day: the owner's rule is that a channel that is doing well must not be changed. Only bug fixes for Empire Maps from now on.
