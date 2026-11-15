@@ -490,6 +490,15 @@ for fi in range(nframes):
         text_c(d, (W / 2, 1660), "WHICH EMPIRE NEXT?", f_title, (255, 248, 230, a), stroke=6, sfill=(0, 0, 0, a))
         text_c(d, (W / 2, 1752), "Tell me in the comments", f_cap, (242, 193, 78, a), stroke=5, sfill=(0, 0, 0, a))
 
+    # subscribe button from the closing line on (views were high but almost nobody subscribed)
+    if t > starts[-1] + 0.8:
+        a = int(255 * ease((t - starts[-1] - 0.8) / 0.4))
+        pop = 1 + 0.06 * max(0.0, 1 - (t - starts[-1] - 0.8) / 0.3)
+        txt = "SUBSCRIBE FOR THE NEXT EMPIRE"
+        tw = f_marker.getlength(txt) * pop
+        bx0, bx1, by0, by1 = W / 2 - tw / 2 - 34, W / 2 + tw / 2 + 34, 1802 - 34 * pop, 1802 + 34 * pop
+        d.rounded_rectangle((bx0, by0, bx1, by1), radius=34, fill=(204, 0, 0, a), outline=(255, 255, 255, a), width=3)
+        d.text((W / 2, 1802), txt, font=f_marker, fill=(255, 255, 255, a), anchor="mm")
     d.text((W / 2, 1885), "Borders: historical-basemaps (A. Ourednik, GPL-3.0)", font=f_small, fill=(255, 255, 255, 70), anchor="mm")
 
     ff.stdin.write(frame.tobytes())
