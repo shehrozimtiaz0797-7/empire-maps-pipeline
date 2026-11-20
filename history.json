@@ -340,5 +340,21 @@
     "title": "Rise and Fall of the Ottoman Empire 🗺️",
     "date": "2026-11-20T14:58:17.970Z",
     "videoId": "vpFZ8_qE9Y0"
+  },
+  {
+    "topic": "roman",
+    "angle": "full",
+    "years": [
+      -400,
+      -300,
+      -200,
+      -100,
+      -1,
+      100,
+      200
+    ],
+    "title": "How the Roman Empire Took Over the World 🗺️",
+    "date": "2026-11-20T19:28:24.391Z",
+    "videoId": "HYSxMW2UKyI"
   }
 ]
