@@ -1,0 +1,199 @@
+{
+  "topic": {
+    "id": "british",
+    "label": "BRITISH EMPIRE",
+    "name": "the British Empire",
+    "names": [
+      "United Kingdom",
+      "United Kingdom of Great Britain and Ireland",
+      "English territory",
+      "England"
+    ]
+  },
+  "scenes": [
+    {
+      "year": 1700,
+      "markers": [
+        {
+          "name": "London",
+          "lat": 51.5074,
+          "lon": -0.1278
+        },
+        {
+          "name": "Boston",
+          "lat": 42.3601,
+          "lon": -71.0589
+        }
+      ],
+      "arrow": null
+    },
+    {
+      "year": 1783,
+      "markers": [
+        {
+          "name": "Yorktown",
+          "lat": 37.2388,
+          "lon": -76.5097
+        },
+        {
+          "name": "Kolkata",
+          "lat": 22.5726,
+          "lon": 88.3639
+        }
+      ],
+      "arrow": {
+        "from": {
+          "lat": 51.5074,
+          "lon": -0.1278
+        },
+        "to": {
+          "lat": 22.5726,
+          "lon": 88.3639
+        }
+      }
+    },
+    {
+      "year": 1815,
+      "markers": [
+        {
+          "name": "Waterloo",
+          "lat": 50.6804,
+          "lon": 4.4121
+        }
+      ],
+      "arrow": {
+        "from": {
+          "lat": 51.5074,
+          "lon": -0.1278
+        },
+        "to": {
+          "lat": 50.6804,
+          "lon": 4.4121
+        }
+      }
+    },
+    {
+      "year": 1914,
+      "markers": [
+        {
+          "name": "Cairo",
+          "lat": 30.0444,
+          "lon": 31.2357
+        },
+        {
+          "name": "Sydney",
+          "lat": -33.8688,
+          "lon": 151.2093
+        }
+      ],
+      "arrow": {
+        "from": {
+          "lat": 30.0444,
+          "lon": 31.2357
+        },
+        "to": {
+          "lat": -33.8688,
+          "lon": 151.2093
+        }
+      }
+    },
+    {
+      "year": 1920,
+      "markers": [
+        {
+          "name": "Baghdad",
+          "lat": 33.3152,
+          "lon": 44.3661
+        },
+        {
+          "name": "Jerusalem",
+          "lat": 31.7683,
+          "lon": 35.2137
+        }
+      ],
+      "arrow": {
+        "from": {
+          "lat": 51.5074,
+          "lon": -0.1278
+        },
+        "to": {
+          "lat": 33.3152,
+          "lon": 44.3661
+        }
+      }
+    },
+    {
+      "year": 1945,
+      "markers": [
+        {
+          "name": "New Delhi",
+          "lat": 28.6139,
+          "lon": 77.209
+        }
+      ],
+      "arrow": null
+    },
+    {
+      "year": 1960,
+      "markers": [
+        {
+          "name": "Lagos",
+          "lat": 6.5244,
+          "lon": 3.3792
+        },
+        {
+          "name": "Nairobi",
+          "lat": -1.2921,
+          "lon": 36.8219
+        }
+      ],
+      "arrow": null
+    },
+    {
+      "year": 1960,
+      "markers": [],
+      "arrow": null
+    }
+  ],
+  "lines": [
+    "In 1700, England ruled growing American colonies and small trading outposts in India.",
+    "By 1783, King George III lost Thirteen Colonies in America, yet British rule expanded in India.",
+    "By 1815, defeating Napoleon at Waterloo left Britain commanding oceans and dominating global trade routes.",
+    "By 1914, King George V ruled a quarter of humanity, stretching from Cairo to Sydney.",
+    "By 1920, defeating the Ottoman Empire expanded British mandates across Iraq and Palestine to peak size.",
+    "By 1945, victory in World War Two bankrupted Britain, sparking Indian independence and rapid imperial collapse.",
+    "By 1960, Prime Minister Harold Macmillan oversaw rapid decolonization across Africa, dismantling the global empire.",
+    "The largest empire in history vanished in decades. Which former British colony prospered the most?"
+  ],
+  "hook_text": "How the British Empire Rose and Fell",
+  "line_starts": [
+    1.55,
+    8.006917,
+    15.577604,
+    22.750125,
+    28.673646,
+    35.948042,
+    43.630729,
+    51.552187
+  ],
+  "line_ends": [
+    7.266125000000001,
+    14.920083,
+    22.154375,
+    28.038146,
+    35.204708000000004,
+    42.890542,
+    50.729396,
+    57.592146
+  ],
+  "total": 59.792146,
+  "intro": 1.6,
+  "voice_end": 57.592146,
+  "font_serif": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/fonts/Lora-Variable.ttf",
+  "font_bold": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/fonts/Poppins-Bold.ttf",
+  "font_medium": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/fonts/Poppins-Medium.ttf",
+  "data_dir": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/data",
+  "ffmpeg": "ffmpeg",
+  "out": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/output/2026-11-21_12-57_british-full/silent.mp4",
+  "seed": 70010
+}

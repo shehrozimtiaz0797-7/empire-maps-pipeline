@@ -1,0 +1,195 @@
+{
+  "topic": {
+    "id": "british",
+    "label": "BRITISH EMPIRE",
+    "name": "the British Empire",
+    "names": [
+      "United Kingdom",
+      "United Kingdom of Great Britain and Ireland",
+      "English territory",
+      "England"
+    ]
+  },
+  "angle": "full",
+  "years": [
+    1700,
+    1783,
+    1815,
+    1914,
+    1920,
+    1945,
+    1960
+  ],
+  "lines": [
+    "In 1700, England ruled growing American colonies and small trading outposts in India.",
+    "By 1783, King George III lost Thirteen Colonies in America, yet British rule expanded in India.",
+    "By 1815, defeating Napoleon at Waterloo left Britain commanding oceans and dominating global trade routes.",
+    "By 1914, King George V ruled a quarter of humanity, stretching from Cairo to Sydney.",
+    "By 1920, defeating the Ottoman Empire expanded British mandates across Iraq and Palestine to peak size.",
+    "By 1945, victory in World War Two bankrupted Britain, sparking Indian independence and rapid imperial collapse.",
+    "By 1960, Prime Minister Harold Macmillan oversaw rapid decolonization across Africa, dismantling the global empire.",
+    "The largest empire in history vanished in decades. Which former British colony prospered the most?"
+  ],
+  "scenes": [
+    {
+      "year": 1700,
+      "markers": [
+        {
+          "name": "London",
+          "lat": 51.5074,
+          "lon": -0.1278
+        },
+        {
+          "name": "Boston",
+          "lat": 42.3601,
+          "lon": -71.0589
+        }
+      ],
+      "arrow": null
+    },
+    {
+      "year": 1783,
+      "markers": [
+        {
+          "name": "Yorktown",
+          "lat": 37.2388,
+          "lon": -76.5097
+        },
+        {
+          "name": "Kolkata",
+          "lat": 22.5726,
+          "lon": 88.3639
+        }
+      ],
+      "arrow": {
+        "from": {
+          "lat": 51.5074,
+          "lon": -0.1278
+        },
+        "to": {
+          "lat": 22.5726,
+          "lon": 88.3639
+        }
+      }
+    },
+    {
+      "year": 1815,
+      "markers": [
+        {
+          "name": "Waterloo",
+          "lat": 50.6804,
+          "lon": 4.4121
+        }
+      ],
+      "arrow": {
+        "from": {
+          "lat": 51.5074,
+          "lon": -0.1278
+        },
+        "to": {
+          "lat": 50.6804,
+          "lon": 4.4121
+        }
+      }
+    },
+    {
+      "year": 1914,
+      "markers": [
+        {
+          "name": "Cairo",
+          "lat": 30.0444,
+          "lon": 31.2357
+        },
+        {
+          "name": "Sydney",
+          "lat": -33.8688,
+          "lon": 151.2093
+        }
+      ],
+      "arrow": {
+        "from": {
+          "lat": 30.0444,
+          "lon": 31.2357
+        },
+        "to": {
+          "lat": -33.8688,
+          "lon": 151.2093
+        }
+      }
+    },
+    {
+      "year": 1920,
+      "markers": [
+        {
+          "name": "Baghdad",
+          "lat": 33.3152,
+          "lon": 44.3661
+        },
+        {
+          "name": "Jerusalem",
+          "lat": 31.7683,
+          "lon": 35.2137
+        }
+      ],
+      "arrow": {
+        "from": {
+          "lat": 51.5074,
+          "lon": -0.1278
+        },
+        "to": {
+          "lat": 33.3152,
+          "lon": 44.3661
+        }
+      }
+    },
+    {
+      "year": 1945,
+      "markers": [
+        {
+          "name": "New Delhi",
+          "lat": 28.6139,
+          "lon": 77.209
+        }
+      ],
+      "arrow": null
+    },
+    {
+      "year": 1960,
+      "markers": [
+        {
+          "name": "Lagos",
+          "lat": 6.5244,
+          "lon": 3.3792
+        },
+        {
+          "name": "Nairobi",
+          "lat": -1.2921,
+          "lon": 36.8219
+        }
+      ],
+      "arrow": null
+    },
+    {
+      "year": 1960,
+      "markers": [],
+      "arrow": null
+    }
+  ],
+  "hook_text": "How the British Empire Rose and Fell",
+  "title": "How the British Empire Rose and Collapsed 🗺️",
+  "description": "Trace the complete history of the British Empire from a small island kingdom to a global superpower and its eventual collapse. Watch how the world's largest empire transformed modern borders across every continent.\n\n#history #maps #shorts #britishempire\n\nMap borders: historical-basemaps by André Ourednik (GPL-3.0). Narration: AI voice.",
+  "tags": [
+    "british empire",
+    "british empire map",
+    "history maps",
+    "empire maps",
+    "rise and fall of british empire",
+    "world history",
+    "decolonization",
+    "british history",
+    "map animation",
+    "history shorts",
+    "napoleonic wars",
+    "world war 2"
+  ]
+}
