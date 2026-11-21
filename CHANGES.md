@@ -15,3 +15,10 @@
 ## 2026-11-15 (16:30 MY)
 - First day: 4 videos, 707-1,549 views each (Rome 1,549 with 45 likes), but only 1 subscriber. Added a red 'SUBSCRIBE FOR THE NEXT EMPIRE' button from the closing line to the end.
 - Subscribe button REMOVED again the same day: the owner's rule is that a channel that is doing well must not be changed. Only bug fixes for Empire Maps from now on.
+
+## 2026-11-22
+- New: daily long video (5-6 min, 16:9), owner's request ("4 short and 1 long"). Separate files only:
+  long/make-long.js, long/longtools.py, .github/workflows/long-video.yml. The Shorts code, workflow and times are unchanged.
+  Map shots of the empire per paragraph (land won since the last map glows gold, lost land fades), chapter cards,
+  word-by-word captions, calm music, map thumbnail. Upload is private with a scheduled publish time (16:30 UTC).
+  Test phase: started by hand; the daily schedule is added after the owner approves the test video.
