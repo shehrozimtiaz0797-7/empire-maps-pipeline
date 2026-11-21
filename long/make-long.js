@@ -31,7 +31,11 @@ function pickTopic() {
   const want = opt('--topic');
   if (want) { const t = TOPICS.find(x => x.id === want); if (t) return withExtra(t); }
   const done = readHist().map(h => h.topic);
-  return withExtra(TOPICS.find(t => !done.includes(t.id)) || TOPICS[done.length % TOPICS.length]);
+  // long/queue.json: preferred order (best Shorts first); then the rest of topics.json; then round again
+  let queue = [];
+  try { queue = JSON.parse(fs.readFileSync(path.join(__dirname, 'queue.json'), 'utf8')); } catch (_) {}
+  const ordered = [...queue.map(id => TOPICS.find(t => t.id === id)).filter(Boolean), ...TOPICS.filter(t => !queue.includes(t.id))];
+  return withExtra(ordered.find(t => !done.includes(t.id)) || ordered[done.length % ordered.length]);
 }
 
 function scriptPrompt(t) {

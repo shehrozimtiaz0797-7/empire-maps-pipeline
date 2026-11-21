@@ -1,9 +1,10 @@
 name: Empire Maps daily long video (5-6 min)
 
 on:
-  # Test phase: started by hand only. After the owner approves the test video the daily schedule is added
-  # (16:35 Malaysia time, just after the YouTube quota resets). Uploads are private and go public by themselves
-  # at PUBLISH_UTC (16:30 UTC = 00:30 Malaysia, evening in Europe, afternoon in the US).
+  # Once a day at 16:35 Malaysia time (just after the YouTube and Gemini limits reset). Approved by the owner on 22 Nov.
+  # The video is uploaded as private and goes public by itself at PUBLISH_UTC (16:30 UTC = 00:30 Malaysia).
+  schedule:
+    - cron: "35 8 * * *"
   workflow_dispatch:
     inputs:
       topic:

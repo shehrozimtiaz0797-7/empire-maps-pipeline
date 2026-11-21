@@ -28,3 +28,5 @@
   (missing 'requests', then a PyAV clash), so captions were estimated and drifted. Map changes follow the real paragraph starts too.
 - Note: the long-video tests on 22 Nov night used up the shared Gemini TTS free limit (10/day), so the 08:50 and 12:50 Shorts
   may fail today; they are made up after the 16:00 reset.
+- Long video approved by the owner (22 Nov 04:52 MY): daily schedule on (16:35 MY), goes public 00:30 MY.
+  Order of empires in long/queue.json (Rome first: best Shorts), then the rest of topics.json.
