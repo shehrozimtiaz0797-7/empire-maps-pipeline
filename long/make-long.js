@@ -17,11 +17,21 @@ const readHist = () => { try { return JSON.parse(fs.readFileSync(HIST, 'utf8'));
 const yearText = y => (y < 0 ? `${-y} BC` : y < 1000 ? `${y} AD` : String(y));
 const CHANNEL = 'https://youtube.com/@empiremaps1857?sub_confirmation=1';
 
+// Extra map years for the long story (e.g. the fall of Rome needs 400 and 500 AD, where the data names the
+// empire differently). Only the long video reads this file; the Shorts keep using topics.json as it is.
+const EXTRA = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, 'extra-years.json'), 'utf8')); } catch (_) { return {}; } })();
+
+function withExtra(t) {
+  const x = EXTRA[t.id];
+  if (!x) return t;
+  return { ...t, years: [...new Set([...t.years, ...(x.years || [])])].sort((a, b) => a - b), names: [...new Set([...t.names, ...(x.names || [])])], labels: { ...(t.labels || {}), ...(x.labels || {}) } };
+}
+
 function pickTopic() {
   const want = opt('--topic');
-  if (want) { const t = TOPICS.find(x => x.id === want); if (t) return t; }
+  if (want) { const t = TOPICS.find(x => x.id === want); if (t) return withExtra(t); }
   const done = readHist().map(h => h.topic);
-  return TOPICS.find(t => !done.includes(t.id)) || TOPICS[done.length % TOPICS.length];
+  return withExtra(TOPICS.find(t => !done.includes(t.id)) || TOPICS[done.length % TOPICS.length]);
 }
 
 function scriptPrompt(t) {
@@ -29,7 +39,7 @@ function scriptPrompt(t) {
 Subject: the full story of ${t.name}: how it began, how it grew, its peak (around ${yearText(t.peak)}), how it declined and ended.
 Map snapshots available (the map on screen shows the real borders in these years): ${t.years.map(yearText).join(', ')}.
 
-Write a gripping, accurate narration of 5 to 6 minutes (800 to 920 words) that tells it as a STORY: the rulers, the key wars and
+Write a gripping, accurate narration of about 6 minutes (720 to 820 words) that tells it as a STORY: the rulers, the key wars and
 turning points, why it grew, why it fell. Open with a strong one-sentence hook about the most surprising fact, then start at the beginning.
 End with why it still matters today and one question for the comments ("Which empire should we map next?").
 Plain spoken English, short sentences, no lists, no headings inside the text, no emoji.
@@ -53,7 +63,7 @@ async function writeScript(t) {
       const ch = (s.chapters || []).filter(c => c && Array.isArray(c.paragraphs) && c.paragraphs.length);
       const paras = ch.flatMap(c => c.paragraphs);
       const words = paras.map(p => String(p.text || '')).join(' ').split(/\s+/).length;
-      if (ch.length < 4 || words < 650) throw new Error(`too short (${ch.length} chapters, ${words} words)`);
+      if (ch.length < 4 || words < 600) throw new Error(`too short (${ch.length} chapters, ${words} words)`);
       log(`Script: ${ch.length} chapters, ${paras.length} paragraphs, ${words} words`);
       // years: only snapshot years, never going back in time
       let y = t.years[0];

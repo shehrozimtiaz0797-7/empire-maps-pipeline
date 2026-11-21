@@ -1,0 +1,16 @@
+{
+ "roman": {
+  "years": [
+   400,
+   500
+  ],
+  "names": [
+   "Western Roman Empire",
+   "Eastern Roman Empire"
+  ],
+  "labels": {
+   "400": "ROMAN EMPIRE (WEST + EAST)",
+   "500": "EASTERN ROMAN EMPIRE"
+  }
+ }
+}
