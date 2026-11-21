@@ -2,7 +2,7 @@
  "roman": {
   "years": [
    400,
-   500
+   600
   ],
   "names": [
    "Western Roman Empire",
@@ -10,7 +10,7 @@
   ],
   "labels": {
    "400": "ROMAN EMPIRE (WEST + EAST)",
-   "500": "EASTERN ROMAN EMPIRE"
+   "600": "EASTERN ROMAN EMPIRE"
   }
  }
 }
