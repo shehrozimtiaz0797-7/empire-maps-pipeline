@@ -22,3 +22,9 @@
   Map shots of the empire per paragraph (land won since the last map glows gold, lost land fades), chapter cards,
   word-by-word captions, calm music, map thumbnail. Upload is private with a scheduled publish time (16:30 UTC).
   Test phase: started by hand; the daily schedule is added after the owner approves the test video.
+- Backup Gemini key (owner added GEMINI_API_KEY_2 on 22 Nov, another project): src/gemini.js tries the main key first and
+  only on HTTP 429 (free daily limit used up) uses the backup. Both workflows pass the new secret. Nothing else in the Shorts changed.
+- Long video captions: word times now come from faster-whisper (long/align.py). The first test had no recogniser
+  (missing 'requests', then a PyAV clash), so captions were estimated and drifted. Map changes follow the real paragraph starts too.
+- Note: the long-video tests on 22 Nov night used up the shared Gemini TTS free limit (10/day), so the 08:50 and 12:50 Shorts
+  may fail today; they are made up after the 16:00 reset.

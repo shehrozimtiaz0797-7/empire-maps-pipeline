@@ -13,15 +13,25 @@ function parseJSON(text) {
   }
 }
 
+// Main key first; if its daily free limit is used up (HTTP 429), the backup key GEMINI_API_KEY_2 (another project) is used.
 async function call(model, body) {
-  const res = await fetchRetry(`${BASE}/${model}:generateContent`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': requireEnv('GEMINI_API_KEY') },
-    body: JSON.stringify(body),
-  });
-  const text = await res.text();
-  if (!res.ok) throw new Error(`Gemini ${model} HTTP ${res.status}: ${text.slice(0, 400)}`);
-  return JSON.parse(text);
+  const keys = [requireEnv('GEMINI_API_KEY'), env('GEMINI_API_KEY_2', '')].filter(Boolean);
+  let last;
+  for (let i = 0; i < keys.length; i++) {
+    const res = await fetchRetry(`${BASE}/${model}:generateContent`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': keys[i] },
+      body: JSON.stringify(body),
+    }, i + 1 < keys.length ? 2 : 3);
+    const text = await res.text();
+    if (res.ok) {
+      if (i > 0) console.log(`[gemini] ${model}: used the backup key`);
+      return JSON.parse(text);
+    }
+    last = new Error(`Gemini ${model} HTTP ${res.status}: ${text.slice(0, 400)}`);
+    if (res.status !== 429) break;
+  }
+  throw last;
 }
 
 // main model first, then backups (a busy model answers 503 / 429 now and then)
