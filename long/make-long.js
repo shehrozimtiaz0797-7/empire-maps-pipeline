@@ -122,6 +122,15 @@ async function makeVoice(s, dir) {
   return { paras, pieces };
 }
 
+// Real word times from the voice (faster-whisper): paragraph starts for the map changes, words for the captions.
+async function align(pieces, dir) {
+  const inp = path.join(dir, 'align-in.json'), out = path.join(dir, 'align.json');
+  fs.writeFileSync(inp, JSON.stringify({ chunks: pieces.map(pc => ({ file: pc.file, paras: pc.group.map(p => p.text) })) }));
+  const o = await run(PYTHON(), [path.join(__dirname, 'align.py'), inp, out]);
+  if (o.trim()) log(o.trim());
+  return JSON.parse(fs.readFileSync(out, 'utf8')).chunks;
+}
+
 function nextPublish() {
   // publish at PUBLISH_UTC (HH:MM) — the first one at least 45 minutes from now
   const [hh, mm] = env('PUBLISH_UTC', '16:30').split(':').map(Number);
@@ -164,6 +173,11 @@ async function main() {
   const s = await writeScript(t);
   fs.writeFileSync(path.join(dir, 'script.json'), JSON.stringify(s, null, 2));
   const { pieces } = await makeVoice(s, dir);
+  const al = await align(pieces, dir);
+  al.forEach((a, i) => {
+    const r = a.matched / Math.max(1, a.script);
+    if (r < 0.75) throw new Error(`voice chunk ${i + 1} does not match the script well enough (${Math.round(r * 100)}% of words found)`);
+  });
 
   // timeline: 4 s title (music only), then the narration. Each chapter opens with a short chapter card;
   // each paragraph shows the map of its year (land won since the last map glows gold); long paragraphs get two shots.
@@ -172,8 +186,25 @@ async function main() {
   const voiceAt = [];
   let tcur = TITLE, prevYear = null, k = 0;
   const zooms = ['wide', 'mid', 'close'];
-  for (const piece of pieces) {
-    voiceAt.push({ file: piece.file, start: tcur, dur: piece.dur, text: piece.group.map(p => p.text).join(' ') });
+  const words = [];
+  pieces.forEach((piece, pi) => {
+    const a = al[pi];
+    // cut anything spoken before the first or after the last script word (e.g. the reading instruction)
+    const first = a.words.length ? a.words[0][1] : 0, lastEnd = a.words.length ? a.words[a.words.length - 1][2] : piece.dur;
+    const skip = first > 1.2 ? first - 0.3 : 0;
+    const keep = Math.min(piece.dur, lastEnd + 0.8) - skip;
+    if (skip || keep < piece.dur - 0.01) log(`Voice chunk ${pi + 1}: using ${skip.toFixed(1)}s to ${(skip + keep).toFixed(1)}s of ${piece.dur.toFixed(1)}s`);
+    a.words = a.words.map(w => [w[0], w[1] - skip, w[2] - skip]);
+    a.para_start = a.para_start.map(x => Math.max(0, x - skip));
+    piece.dur = keep;
+    voiceAt.push({ file: piece.file, start: tcur, skip, dur: piece.dur, text: piece.group.map(p => p.text).join(' ') });
+    for (const w of a.words) words.push([w[0], tcur + w[1], tcur + w[2]]);
+    // each paragraph lasts from its first spoken word to the next paragraph's first word
+    piece.group.forEach((p, gi) => {
+      const st = gi === 0 ? 0 : a.para_start[gi];
+      const en = gi + 1 < piece.group.length ? a.para_start[gi + 1] : piece.dur;
+      p.dur = Math.max(0.8, en - st);
+    });
     for (const p of piece.group) {
       let d = p.dur;
       if (p.first) {
@@ -188,16 +219,17 @@ async function main() {
       prevYear = p.year;
     }
     tcur += piece.dur;
-  }
+  });
   timeline.push({ kind: 'outro', dur: 5 });
   const total = tcur + 5;
   const spec = {
     topic: { names: t.names, years: t.years, label: t.label, labels: t.labels || {}, peak: t.peak }, brand: env('BRAND', 'EMPIRE MAPS'),
-    timeline, voice: voiceAt, total, data_dir: path.join(ROOT, 'data'), out: path.join(dir, 'final.mp4'),
+    timeline, voice: voiceAt, words, total, data_dir: path.join(ROOT, 'data'), out: path.join(dir, 'final.mp4'),
     title: s.title, preview: path.join(dir, 'preview.mp4'), thumb: path.join(dir, 'thumb.jpg'), thumb_text: s.thumb_text, ffmpeg: FFMPEG(), work: dir,
   };
   fs.writeFileSync(path.join(dir, 'long.json'), JSON.stringify(spec, null, 1));
-  await run(PYTHON(), [path.join(__dirname, 'longtools.py'), path.join(dir, 'long.json')]);
+  const ro = await run(PYTHON(), [path.join(__dirname, 'longtools.py'), path.join(dir, 'long.json')]);
+  if (ro.trim()) log(ro.trim().split('\n').filter(l => !/^shots /.test(l)).join('\n'));
   const real = await duration(spec.out);
   log(`Video ready: ${(real / 60).toFixed(1)} min`);
 

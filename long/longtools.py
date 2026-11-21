@@ -421,8 +421,12 @@ def ass_time(t):
 
 def write_ass(path):
     allw = []
-    for v in spec["voice"]:
-        allw += timed_words(v)
+    if spec.get("words"):  # real word times from long/align.py
+        allw = [(str(w), float(a), float(b)) for w, a, b in spec["words"]]
+        log(f"captions: {len(allw)} words with real times")
+    else:
+        for v in spec["voice"]:
+            allw += timed_words(v)
     lines, cur = [], []
     for k, (w, s0, s1) in enumerate(allw):
         cur.append((w, s0, s1))
@@ -495,7 +499,8 @@ ins, flt = [], []
 for i, v in enumerate(spec["voice"]):
     ins += ["-i", v["file"]]
     ms = int(float(v["start"]) * 1000)
-    flt.append(f"[{i + 1}:a]aresample=48000,adelay={ms}|{ms},apad[v{i}]")
+    cut = f"atrim=start={float(v.get('skip') or 0):.3f}:duration={float(v['dur']):.3f},asetpts=PTS-STARTPTS," if v.get("dur") else ""
+    flt.append(f"[{i + 1}:a]{cut}aresample=48000,adelay={ms}|{ms},apad[v{i}]")
 nv = len(spec["voice"])
 flt.append("".join(f"[v{i}]" for i in range(nv)) + f"amix=inputs={nv}:normalize=0:duration=longest,atrim=0:{T:.2f}[voice]")
 flt.append(f"[{nv + 1}:a]aresample=48000,volume=0.22[m]")
