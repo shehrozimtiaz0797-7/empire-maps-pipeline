@@ -11,7 +11,23 @@ import re
 import sys
 from difflib import SequenceMatcher
 
+import wave
+
+import numpy as np
 from faster_whisper import WhisperModel
+
+
+def load16k(path):
+    """The voice wav as 16 kHz float samples (read here, so the recogniser needs no audio library)."""
+    with wave.open(path, "rb") as w:
+        sr, ch, n = w.getframerate(), w.getnchannels(), w.getnframes()
+        x = np.frombuffer(w.readframes(n), np.int16).astype(np.float32) / 32768
+    if ch > 1:
+        x = x.reshape(-1, ch).mean(axis=1)
+    if sr != 16000:
+        t = np.arange(int(len(x) * 16000 / sr)) * (sr / 16000)
+        x = np.interp(t, np.arange(len(x)), x).astype(np.float32)
+    return x
 
 
 def norm(w):
@@ -22,7 +38,7 @@ spec = json.load(open(sys.argv[1]))
 model = WhisperModel(os.environ.get("WHISPER_MODEL", "base.en"), device="cpu", compute_type="int8")
 out = []
 for ch in spec["chunks"]:
-    segs, _ = model.transcribe(ch["file"], language="en", word_timestamps=True, vad_filter=False, beam_size=5)
+    segs, _ = model.transcribe(load16k(ch["file"]), language="en", word_timestamps=True, vad_filter=False, beam_size=5)
     heard = []
     for sg in segs:
         for w in sg.words or []:
