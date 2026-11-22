@@ -66,7 +66,7 @@ Write:
   * Line 1 is the hook: it must make people stay (surprise, contrast or a question), e.g. "In 1300, Moscow was a small town. 600 years later, it ruled a sixth of the world."
   * Each middle line starts with its year ("By 1530, ...", "In 1700, ...") and says what changed on the map around that time: conquests, wars, losses, who they fought. Name real places and real rulers.
   * The last line lands the story in one strong sentence, then asks the viewer a question to answer in the comments.
-  * 7 to 12 words per line. ${Math.round((p.years.length + 1) * 9)} to ${Math.round((p.years.length + 1) * 11)} words in total (the whole Short must stay under 40 seconds), so keep every line short and punchy. Simple, vivid English, like a great documentary narrator.
+  * 7 to 10 words per line, never more than 11. ${Math.round((p.years.length + 1) * 8)} to ${Math.round((p.years.length + 1) * 10)} words in total (the whole Short must stay under 40 seconds), so keep every line short and punchy. Simple, vivid English, like a great documentary narrator.
   * Only well-known, true history. No made-up numbers. Dates must match the snapshot years. Neutral tone: no praise or hate of any religion, nation or people.
 - "scenes": exactly ${p.years.length} objects, one per snapshot year, in order: {"markers": [up to 2 famous cities or battle sites that the line for that year talks about, each {"name": "short name", "lat": number, "lon": number}], "arrow": null or {"from": {"lat","lon"}, "to": {"lat","lon"}} for a famous campaign or conquest in that line}. Coordinates must be real (decimal degrees).
 - "hook_text": the on-screen title, 4 to 7 words, a curiosity title different from line 1 (e.g. "How Russia Became the Biggest Country", "The Empire That Ruled 3 Continents").
@@ -81,7 +81,7 @@ function checkPrompt(p, s) {
   return `You are a careful history fact-checker. These narration lines go with maps of ${p.topic.name} at the years ${p.years.map(yearText).join(', ')} (the last line is a closing line).
 ${JSON.stringify(s.lines, null, 1)}
 
-Fix any line that has a wrong fact, a wrong date, an exaggeration presented as fact, or that does not fit its year. Keep the same number of lines, the same style and about the same length (10 to 18 words each). Keep correct lines exactly as they are.
+Fix any line that has a wrong fact, a wrong date, an exaggeration presented as fact, or that does not fit its year. Keep the same number of lines, the same style and about the same length (7 to 11 words each, the Short must stay under 40 seconds). Keep correct lines exactly as they are.
 Return ONLY JSON: {"lines": [...], "changed": number of lines you changed}`;
 }
 
@@ -103,7 +103,7 @@ function validate(p, s) {
   const lines = (s.lines || []).map(l => String(l).replace(/\s+/g, ' ').trim()).filter(Boolean);
   if (lines.length !== n + 1) throw new Error(`need ${n + 1} lines, got ${lines.length}`);
   const words = lines.join(' ').split(' ').length;
-  if (words < (n + 1) * 7 || words > (n + 1) * 13) throw new Error(`script is ${words} words`);
+  if (words < (n + 1) * 6 || words > (n + 1) * 11) throw new Error(`script is ${words} words (max ${(n + 1) * 11} for a 30-40 s Short)`);
   const hook = String(s.hook_text || '').trim();
   if (!hook || hook.split(/\s+/).length > 9) throw new Error('bad hook_text');
   return {

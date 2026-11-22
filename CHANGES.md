@@ -2,7 +2,8 @@
 
 ## 2026-11-22 (21:20 MY) Shorts 30-40 seconds
 - Owner's choice: Shorts were 45-66 s; the shorter ones (27-46 s) got more views. Now at most 5 map years per Short
-  (MAX_MAPS in src/script.js) and 7-12 words per line, so a Short is about 30-40 s. Rollback: MAX_MAPS = 7 and the old
+  (MAX_MAPS in src/script.js) and 7-10 words per line (max 11 per line on average, also in the fact-check), so a Short is about 30-40 s.
+  First test (Holy Roman, 5 maps, 76 words) came out 44 s, so the limit was tightened to max 66 words for 5 maps. Rollback: MAX_MAPS = 7 and the old
   word limits (10-18 per line, 13-16 x lines in total, check 9-19).
 
 ## 2026-11-15
