@@ -1,5 +1,10 @@
 # Changes
 
+## 2026-11-22 (21:20 MY) Shorts 30-40 seconds
+- Owner's choice: Shorts were 45-66 s; the shorter ones (27-46 s) got more views. Now at most 5 map years per Short
+  (MAX_MAPS in src/script.js) and 7-12 words per line, so a Short is about 30-40 s. Rollback: MAX_MAPS = 7 and the old
+  word limits (10-18 per line, 13-16 x lines in total, check 9-19).
+
 ## 2026-11-15
 - First version: animated history-map Shorts (borders from historical-basemaps), Gemini narration + fact-check, documentary voice, epic music, 2 uploads a day (2:50 and 8:50 Malaysia time).
 
