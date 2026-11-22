@@ -1,0 +1,42 @@
+name: Demo - Malaysia admissions Short (test only, no upload)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      FFMPEG_PATH: ffmpeg
+      PYTHON: python
+      GEMINI_TTS_MODEL: gemini-3.8-flash-tts
+      GEMINI_TTS_VOICE: Charon
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pillow numpy
+      - uses: actions/cache@v4
+        with:
+          path: data
+          key: borders-v1
+      - run: node demo/make-admission-demo.js 2>&1 | tee demo.log; exit ${PIPESTATUS[0]}
+      - name: Save the demo (qa-demo branch)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p /tmp/qa && cp demo.log /tmp/qa/ && cp output/demo-admission/demo.mp4 output/demo-admission/spec.json /tmp/qa/ 2>/dev/null || true
+          cd /tmp/qa && git init -q -b qa-demo && git add . && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm demo
+          git push -qf "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" qa-demo
