@@ -1,5 +1,74 @@
 [
  {
+  "id": "india",
+  "label": "INDIA",
+  "name": "the empires that ruled India (the Maurya, the Guptas, the Delhi Sultanate, the Mughals, the British Raj) and modern India",
+  "names": [
+   "Mauryan Empire",
+   "Gupta Empire",
+   "Sultanate of Delhi",
+   "Mughal Empire",
+   "British Raj",
+   "India"
+  ],
+  "years": [
+   -200,
+   400,
+   1300,
+   1700,
+   1900,
+   1960
+  ],
+  "peak": 1700
+ },
+ {
+  "id": "china",
+  "label": "CHINA",
+  "name": "the dynasties that ruled China (the Han, Sui, Tang, Song, Ming and Qing) and modern China",
+  "names": [
+   "Han Empire",
+   "Han",
+   "Sui Empire",
+   "Tang Empire",
+   "Song Empire",
+   "Ming Chinese Empire",
+   "Manchu Empire",
+   "Qing Empire",
+   "China"
+  ],
+  "years": [
+   -200,
+   200,
+   600,
+   800,
+   1100,
+   1500,
+   1800,
+   1960
+  ],
+  "peak": 1800
+ },
+ {
+  "id": "french",
+  "label": "FRENCH EMPIRE",
+  "name": "the French colonial empire",
+  "names": [
+   "France"
+  ],
+  "years": [
+   1500,
+   1650,
+   1700,
+   1783,
+   1815,
+   1878,
+   1914,
+   1938,
+   1960
+  ],
+  "peak": 1938
+ },
+ {
   "id": "ottoman",
   "label": "OTTOMAN EMPIRE",
   "name": "the Ottoman Empire",
@@ -282,26 +351,6 @@
    1715
   ],
   "peak": 1600
- },
- {
-  "id": "french",
-  "label": "FRENCH EMPIRE",
-  "name": "the French colonial empire",
-  "names": [
-   "France"
-  ],
-  "years": [
-   1500,
-   1650,
-   1700,
-   1783,
-   1815,
-   1878,
-   1914,
-   1938,
-   1960
-  ],
-  "peak": 1938
  },
  {
   "id": "swedish",
