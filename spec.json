@@ -1,0 +1,107 @@
+{
+ "scenes": [
+  {
+   "kind": "title",
+   "title": "MALAYSIA STUDENT VISA",
+   "badge": "5 ASAAN STEPS",
+   "urdu": "ملائیشیا میں پڑھنا ہے؟ اسٹوڈنٹ ویزا کے پانچ آسان مراحل، یاد کر لیں۔",
+   "caption": "Malaysia mein parhna hai? Student visa ke 5 asaan steps, yaad kar lein."
+  },
+  {
+   "kind": "step",
+   "n": 1,
+   "title": "OFFER LETTER",
+   "detail": "Recognised Malaysian university se admission offer",
+   "urdu": "پہلا قدم: کسی تسلیم شدہ ملائیشین یونیورسٹی سے آفر لیٹر لیں۔",
+   "caption": "Pehla step: kisi recognised Malaysian university se offer letter lein."
+  },
+  {
+   "kind": "step",
+   "n": 2,
+   "title": "EMGS APPLICATION",
+   "detail": "University aap ki student pass application EMGS mein jama karti hai — apne mulk se",
+   "urdu": "دوسرا: یونیورسٹی آپ کی اسٹوڈنٹ پاس کی درخواست ای ایم جی ایس میں جمع کرتی ہے۔ یہ اپنے ملک سے ہی ہوتا ہے۔",
+   "caption": "Doosra: university aap ki student pass application EMGS mein jama karti hai. Ye apne mulk se hi hota hai."
+  },
+  {
+   "kind": "step",
+   "n": 3,
+   "title": "eVAL",
+   "detail": "Approval ke baad Visa Approval Letter milta hai",
+   "urdu": "تیسرا: منظوری کے بعد آپ کو ای ویل ملتا ہے، یعنی ویزا اپروول لیٹر۔",
+   "caption": "Teesra: approval ke baad aap ko eVAL milta hai, yani Visa Approval Letter."
+  },
+  {
+   "kind": "step",
+   "n": 4,
+   "title": "SINGLE ENTRY VISA",
+   "detail": "Pakistan aur India ke students Malaysian embassy se SEV lete hain",
+   "urdu": "چوتھا: پاکستان اور انڈیا کے طلبہ ای ویل کے ساتھ ملائیشین ایمبیسی سے سنگل انٹری ویزا لیتے ہیں۔",
+   "caption": "Chautha: Pakistan aur India ke students eVAL ke saath Malaysian embassy se Single Entry Visa lete hain."
+  },
+  {
+   "kind": "step",
+   "n": 5,
+   "title": "MEDICAL + STUDENT PASS",
+   "detail": "Malaysia pohanch kar 7 din ke andar medical, phir passport par student pass",
+   "urdu": "پانچواں: ملائیشیا پہنچ کر سات دن کے اندر میڈیکل، پھر پاسپورٹ پر اسٹوڈنٹ پاس لگتا ہے۔",
+   "caption": "Paanchwa: Malaysia pohanch kar 7 din ke andar medical, phir passport par student pass lagta hai."
+  },
+  {
+   "kind": "warn",
+   "title": "TOURIST VISA PAR NAHI",
+   "detail": "Tourist visa par aa kar student pass nahi banta",
+   "urdu": "یاد رکھیں: ٹورسٹ ویزا پر آ کر اسٹوڈنٹ پاس نہیں بنتا۔",
+   "caption": "Yaad rakhein: tourist visa par aa kar student pass nahi banta."
+  },
+  {
+   "kind": "cta",
+   "title": "ADMISSION HELP",
+   "contact": "WhatsApp: +60 XX-XXX XXXX",
+   "detail": "Free guidance — number description mein",
+   "urdu": "داخلے اور ویزا میں مدد چاہیے؟ ڈسکرپشن میں دیے گئے نمبر پر واٹس ایپ کریں۔",
+   "caption": "Admission aur visa mein madad chahiye? Description mein diye number par WhatsApp karein."
+  }
+ ],
+ "segments": [
+  {
+   "start": 0,
+   "end": 4.258687
+  },
+  {
+   "start": 4.994167,
+   "end": 9.103167
+  },
+  {
+   "start": 10.042271,
+   "end": 16.400354
+  },
+  {
+   "start": 17.232521,
+   "end": 22.353938
+  },
+  {
+   "start": 23.338188,
+   "end": 28.697854
+  },
+  {
+   "start": 29.565312,
+   "end": 34.837667
+  },
+  {
+   "start": 35.727833,
+   "end": 38.454187
+  },
+  {
+   "start": 39.381479,
+   "end": 43.376083
+  }
+ ],
+ "voice": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/output/demo-admission/voice.wav",
+ "lead": 0.6,
+ "total": 45.176083000000006,
+ "data_dir": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/data",
+ "out": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/output/demo-admission/demo.mp4",
+ "work": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/output/demo-admission",
+ "ffmpeg": "ffmpeg"
+}
