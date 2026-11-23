@@ -3,6 +3,8 @@
 ## 2026-11-24 (04:40 MY) Long videos stopped by the owner
 - Owner: "empire long video khatam kar do band kar". long-video.yml is disabled (GitHub Actions -> Enable workflow to
   start again) and the run that was in progress was cancelled. Shorts are not changed.
+- At the owner's confirmed request the 2 long videos were deleted from YouTube: j4PrtHGrVzE (Roman, 2 views) and
+  Ki8igBSE6ho (Ottoman, 0 views).
 
 ## 2026-11-23 (16:20 MY) Shorts: hard 40 s cap
 - The French Short (56 words) still came out 47 s because the voice read slowly. make-video.js now speeds the voice
