@@ -1,5 +1,12 @@
 # Changes
 
+## 2026-11-23 (10:05 MY) Fixes from the daily check
+- Long video: GitHub's 16:35 MY cron ran 8 hours late (00:35 MY) and made 23 Nov's video early (Ottoman, public 23 Nov
+  00:30 MY... i.e. 2026-11-23T16:30Z). To stop a second long video for the same slot (late cron + backup starter),
+  make-long.js now does nothing if long-history.json already has a video for the next publish slot (--force overrides).
+- Shorts: a --no-upload test run was written to history.json (Holy Roman, 22 Nov 21:44 MY, no videoId), which made the
+  pipeline think that topic was done. Removed that entry; make-video.js no longer records --no-upload runs.
+
 ## 2026-11-23 (01:40 MY) New topics from competitor research
 - Owner asked me to pick ("jo dil hai karna"). Research of 16 history-map channels: "Evolution of India" (43x the
   channel's median), "Evolution of China" (18x) and the French Empire (29x) were top outliers. Added topics `india`

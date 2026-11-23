@@ -74,7 +74,7 @@ function cleanup() {
   if (NO_UPLOAD) log('Upload skipped (--no-upload). Video is in: ' + dir);
   else ({ id: videoId } = await withRetry('YouTube upload', () => upload(video.file, script), { tries: 3, waitMs: 45000, log }));
 
-  if (!SAMPLE) addHistory({ topic: script.topic.id, angle: script.angle, years: script.years, title: script.title, date: new Date().toISOString(), videoId });
+  if (!SAMPLE && !NO_UPLOAD) addHistory({ topic: script.topic.id, angle: script.angle, years: script.years, title: script.title, date: new Date().toISOString(), videoId });
   cleanup();
   log(`Done: "${script.title}" ${videoId ? 'https://youtube.com/shorts/' + videoId : ''}`);
 })().catch(e => { log('Failed: ' + (e.stack || e.message)); process.exit(1); });

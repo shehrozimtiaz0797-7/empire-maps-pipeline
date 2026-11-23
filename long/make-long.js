@@ -169,6 +169,12 @@ async function uploadLong(file, meta) {
 }
 
 async function main() {
+  // One long video per publish slot: GitHub's cron can run hours late and the backup starter may run too, so a
+  // second run for a slot that already has a video does nothing (use --force to make one anyway).
+  if (!NO_UPLOAD && !args.includes('--force')) {
+    const slot = nextPublish();
+    if (readHist().some(h => h.publishAt === slot && h.videoId)) { log(`A long video for ${slot} is already uploaded; nothing to do.`); return; }
+  }
   const t = pickTopic();
   const stamp = new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-');
   const dir = path.join(ROOT, 'output', `long-${stamp}-${t.id}`);
