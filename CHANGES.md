@@ -1,5 +1,9 @@
 # Changes
 
+## 2026-11-24 (04:40 MY) Long videos stopped by the owner
+- Owner: "empire long video khatam kar do band kar". long-video.yml is disabled (GitHub Actions -> Enable workflow to
+  start again) and the run that was in progress was cancelled. Shorts are not changed.
+
 ## 2026-11-23 (16:20 MY) Shorts: hard 40 s cap
 - The French Short (56 words) still came out 47 s because the voice read slowly. make-video.js now speeds the voice
   up a little (max x1.15) when it is longer than MAX_VOICE = 36 s, so the Short stays under ~40 s.
