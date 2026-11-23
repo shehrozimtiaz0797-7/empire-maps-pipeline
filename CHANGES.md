@@ -1,5 +1,9 @@
 # Changes
 
+## 2026-11-23 (16:20 MY) Shorts: hard 40 s cap
+- The French Short (56 words) still came out 47 s because the voice read slowly. make-video.js now speeds the voice
+  up a little (max x1.15) when it is longer than MAX_VOICE = 36 s, so the Short stays under ~40 s.
+
 ## 2026-11-23 (10:05 MY) Fixes from the daily check
 - Long video: GitHub's 16:35 MY cron ran 8 hours late (00:35 MY) and made the next video early (Ottoman, public 24 Nov
   00:30 MY = 2026-11-23T16:30Z). To stop a second long video for the same slot (late cron + backup starter),

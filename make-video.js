@@ -6,7 +6,7 @@
 //   node make-video.js --sample --no-upload   test video without any keys (Ottoman Empire)
 const fs = require('fs');
 const path = require('path');
-const { ROOT, env, log, slugify } = require('./src/lib');
+const { ROOT, env, log, slugify, run, duration, FFMPEG } = require('./src/lib');
 const { withRetry } = require('./src/retry');
 const { writeScript, readHistory, addHistory, finish, TOPICS } = require('./src/script');
 const { makeVoice } = require('./src/voice');
@@ -68,6 +68,18 @@ function cleanup() {
 
   const voice = SAMPLE && !env('GEMINI_API_KEY') ? null : await makeVoice(script, dir, readHistory().length);
   if (!voice && !SAMPLE) throw new Error('No voice (Gemini TTS failed or its free daily limit is used up). Not uploading a silent video.');
+  // Shorts must stay 30-40 s (owner's choice, 22 Nov). The video is the voice + 3.8 s, so if a slow voice runs over
+  // MAX_VOICE seconds, speed it up a little (at most 15%, which still sounds natural).
+  const MAX_VOICE = Number(env('MAX_VOICE', '36'));
+  if (voice && voice.dur > MAX_VOICE) {
+    const f = Math.min(voice.dur / MAX_VOICE, 1.15);
+    const fast = path.join(dir, 'voice_fast.wav');
+    await run(FFMPEG(), ['-y', '-loglevel', 'error', '-i', voice.file, '-filter:a', `atempo=${f.toFixed(4)}`, '-ar', '48000', fast]);
+    const nd = await duration(fast);
+    log(`Voice ${voice.dur.toFixed(1)}s is over ${MAX_VOICE}s: sped up x${f.toFixed(2)} to ${nd.toFixed(1)}s`);
+    voice.segments = (voice.segments || []).map(sg => ({ ...sg, start: sg.start / f, end: sg.end / f }));
+    voice.file = fast; voice.dur = nd;
+  }
   const video = await buildVideo(script, voice, dir);
 
   let videoId = null;
