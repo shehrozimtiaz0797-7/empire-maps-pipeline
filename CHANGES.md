@@ -1,8 +1,8 @@
 # Changes
 
 ## 2026-11-23 (10:05 MY) Fixes from the daily check
-- Long video: GitHub's 16:35 MY cron ran 8 hours late (00:35 MY) and made 23 Nov's video early (Ottoman, public 23 Nov
-  00:30 MY... i.e. 2026-11-23T16:30Z). To stop a second long video for the same slot (late cron + backup starter),
+- Long video: GitHub's 16:35 MY cron ran 8 hours late (00:35 MY) and made the next video early (Ottoman, public 24 Nov
+  00:30 MY = 2026-11-23T16:30Z). To stop a second long video for the same slot (late cron + backup starter),
   make-long.js now does nothing if long-history.json already has a video for the next publish slot (--force overrides).
 - Shorts: a --no-upload test run was written to history.json (Holy Roman, 22 Nov 21:44 MY, no videoId), which made the
   pipeline think that topic was done. Removed that entry; make-video.js no longer records --no-upload runs.
