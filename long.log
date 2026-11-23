@@ -1,0 +1,19 @@
+[2026-11-23 20:29:52] LONG video: the Mongol Empire
+[2026-11-23 20:35:20] Script: 5 chapters, 15 paragraphs, 813 words
+[2026-11-23 20:35:42] Fact-check skipped: HTTP 503: {
+  "error": {
+    "code": 503,
+    "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+[2026-11-23 20:36:12] Voice chunk 1: 132.7s
+[2026-11-23 20:36:43] Voice chunk 2: 129.5s
+[2026-11-23 20:37:13] Voice chunk 3: 128.1s
+[2026-11-23 20:37:31] align: voice1.wav: 255/268 script words found in 286 spoken words
+align: voice2.wav: 266/279 script words found in 295 spoken words
+align: voice3.wav: 262/266 script words found in 284 spoken words
+[2026-11-23 20:37:31] Voice chunk 1: using 10.7s to 132.5s of 132.7s
+[2026-11-23 20:37:31] Voice chunk 2: using 10.0s to 129.5s of 129.5s
+[2026-11-23 20:37:31] Voice chunk 3: using 8.9s to 128.1s of 128.1s
