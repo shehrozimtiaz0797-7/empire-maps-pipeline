@@ -1,5 +1,10 @@
 # Changes
 
+## 2026-11-25 (02:05 MY) Shorts start fast, short tail (Shorts algorithm: swipe decision in the first 1-2 s)
+- Voice now starts at 0.5 s (was 1.6 s of title + music only); the end card comes sooner and the tail is 1.4 s
+  (was 2.2 s) so the Short loops back quickly (rewatches count). INTRO_S / TAIL_S env vars. Tested on branch
+  fast-start without upload (Alexander, 27.9 s; caption visible at 0.8 s).
+
 ## 2026-11-24 (23:15 MY) Gemini overload retry
 - The 22:50 MY Short failed: Gemini answered HTTP 503 ("high demand") on all text models for ~2 minutes. Re-ran it by
   hand. writeScript now retries busy errors (5xx/429) up to 6 times with waits of 30-150 s (~12 min in all).

@@ -5,9 +5,12 @@ const path = require('path');
 const { ROOT, log, run, FFMPEG, PYTHON } = require('./lib');
 
 async function buildVideo(script, voice, dir) {
-  const VSTART = 1.6; // the title hit plays alone first
+  // Shorts algorithm (25 Nov): viewers decide to swipe in the first 1-2 s, so the voice starts almost at once (was
+  // 1.6 s of title only), and the tail is short so the Short loops back to the start quickly (rewatches count).
+  const VSTART = Number(process.env.INTRO_S || 0.5);
+  const TAIL = Number(process.env.TAIL_S || 1.4);
   const speakDur = voice ? voice.dur : Math.max(20, script.lines.join(' ').split(' ').length / 2.6);
-  const total = VSTART + speakDur + 2.2;
+  const total = VSTART + speakDur + TAIL;
   let starts, ends;
   if (voice && voice.segments) {
     starts = voice.segments.map(sg => VSTART + sg.start - 0.05);
