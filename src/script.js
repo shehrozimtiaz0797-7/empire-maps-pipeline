@@ -132,7 +132,10 @@ async function writeScript(wanted) {
   const p = pickTopic(wanted);
   log(`Topic: ${p.topic.name} (${p.angle}: ${p.years.map(yearText).join(', ')})`);
   let last;
-  for (let a = 1; a <= 3; a++) {
+  // Gemini is sometimes overloaded for a few minutes (HTTP 503 on every model, 24 Nov 22:50 MY Short lost). Busy
+  // errors get up to 6 tries with growing waits (about 12 minutes in all); a bad script still gets 3 tries.
+  let bad = 0;
+  for (let a = 1; a <= 6; a++) {
     try {
       const s = validate(p, await askJSON(prompt(p), { temperature: 0.8 }));
       try {
@@ -143,7 +146,12 @@ async function writeScript(wanted) {
         }
       } catch (e) { log('Fact-check skipped: ' + e.message); }
       return finish(p, s);
-    } catch (e) { last = e; log(`Script attempt ${a} not usable (${e.message})`); }
+    } catch (e) {
+      last = e; log(`Script attempt ${a} not usable (${String(e.message).slice(0, 160)})`);
+      const busy = /HTTP (5\d\d|429)/.test(e.message);
+      if (!busy && ++bad >= 3) break;
+      if (busy && a < 6) await new Promise(r => setTimeout(r, 30000 * a));
+    }
   }
   throw last;
 }

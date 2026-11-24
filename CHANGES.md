@@ -1,5 +1,9 @@
 # Changes
 
+## 2026-11-24 (23:15 MY) Gemini overload retry
+- The 22:50 MY Short failed: Gemini answered HTTP 503 ("high demand") on all text models for ~2 minutes. Re-ran it by
+  hand. writeScript now retries busy errors (5xx/429) up to 6 times with waits of 30-150 s (~12 min in all).
+
 ## 2026-11-24 (16:20 MY) Growth: no more repeat empires, 19 new empires, varied titles
 - Owner: "karo jo karna hai mujh grow chaye". Data: a second Short about the same empire got 3-7x fewer views
   (Spanish 1,412 -> 189, British 1,483 -> 356, Russia 1,231 -> 444, USA 1,184 -> 454), and all 26 old empires had
