@@ -1,5 +1,315 @@
 [
  {
+  "id": "persia",
+  "label": "PERSIA",
+  "name": "the empires of Persia (the Achaemenids, Parthians, Sasanians, Safavids and Qajar Persia)",
+  "names": [
+   "Achaemenid Empire",
+   "Parthian Empire",
+   "Sasanian Empire",
+   "Safavid Empire",
+   "Persia"
+  ],
+  "years": [
+   -500,
+   -1,
+   600,
+   1600,
+   1800
+  ],
+  "peak": -500
+ },
+ {
+  "id": "alexander",
+  "label": "ALEXANDER'S EMPIRE",
+  "name": "the empire of Alexander the Great and the kingdoms that split from it (the Seleucids and Ptolemies)",
+  "names": [
+   "Empire of Alexander",
+   "Seleucid Kingdom",
+   "Ptolemaic Kingdom"
+  ],
+  "years": [
+   -323,
+   -300,
+   -200,
+   -100
+  ],
+  "peak": -323
+ },
+ {
+  "id": "egypt_ancient",
+  "label": "ANCIENT EGYPT",
+  "name": "Ancient Egypt",
+  "names": [
+   "Egypt"
+  ],
+  "years": [
+   -2000,
+   -1500,
+   -1000,
+   -700
+  ],
+  "peak": -1500
+ },
+ {
+  "id": "inca",
+  "label": "INCA EMPIRE",
+  "name": "the Inca Empire",
+  "names": [
+   "Inca Empire"
+  ],
+  "years": [
+   1500,
+   1530,
+   1600
+  ],
+  "peak": 1500
+ },
+ {
+  "id": "caliphates",
+  "label": "UMAYYAD & ABBASID CALIPHATES",
+  "name": "the Umayyad and Abbasid Caliphates",
+  "names": [
+   "Umayyad Caliphate",
+   "Abbasid Caliphate"
+  ],
+  "years": [
+   700,
+   800,
+   900
+  ],
+  "peak": 700
+ },
+ {
+  "id": "timurid",
+  "label": "TIMURID EMPIRE",
+  "name": "the Timurid Empire of Timur (Tamerlane)",
+  "names": [
+   "Timurid Empire",
+   "Timurid Emirates"
+  ],
+  "years": [
+   1400,
+   1492,
+   1500
+  ],
+  "peak": 1400
+ },
+ {
+  "id": "carthage",
+  "label": "CARTHAGE",
+  "name": "the Carthaginian Empire",
+  "names": [
+   "Carthaginian Empire",
+   "Carthage"
+  ],
+  "years": [
+   -500,
+   -400,
+   -323,
+   -300,
+   -200
+  ],
+  "peak": -300
+ },
+ {
+  "id": "maratha",
+  "label": "MARATHA EMPIRE",
+  "name": "the Maratha Empire (Maratha Confederacy)",
+  "names": [
+   "Maratha",
+   "Maratha Confederacy"
+  ],
+  "years": [
+   1715,
+   1783,
+   1800,
+   1815
+  ],
+  "peak": 1783
+ },
+ {
+  "id": "chola",
+  "label": "CHOLA EMPIRE",
+  "name": "the Chola Empire of South India",
+  "names": [
+   "Chola Empire",
+   "Cholas"
+  ],
+  "years": [
+   900,
+   1000,
+   1100,
+   1200,
+   1300
+  ],
+  "peak": 1100
+ },
+ {
+  "id": "assyria",
+  "label": "ASSYRIA",
+  "name": "the Assyrian Empire",
+  "names": [
+   "Assyria"
+  ],
+  "years": [
+   -1500,
+   -1000,
+   -700
+  ],
+  "peak": -700
+ },
+ {
+  "id": "mamluk",
+  "label": "MAMLUK SULTANATE",
+  "name": "the Mamluk Sultanate of Egypt and Syria",
+  "names": [
+   "Mamluke Sultanate"
+  ],
+  "years": [
+   1279,
+   1300,
+   1400,
+   1492,
+   1500
+  ],
+  "peak": 1400
+ },
+ {
+  "id": "vijayanagara",
+  "label": "VIJAYANAGARA EMPIRE",
+  "name": "the Vijayanagara Empire",
+  "names": [
+   "Vijayanagara"
+  ],
+  "years": [
+   1492,
+   1500,
+   1530,
+   1600,
+   1650
+  ],
+  "peak": 1530
+ },
+ {
+  "id": "hittite",
+  "label": "HITTITE EMPIRE",
+  "name": "the Hittite Empire",
+  "names": [
+   "Hittites"
+  ],
+  "years": [
+   -2000,
+   -1500,
+   -1000,
+   -700
+  ],
+  "peak": -1500
+ },
+ {
+  "id": "venice",
+  "label": "REPUBLIC OF VENICE",
+  "name": "the Republic of Venice",
+  "names": [
+   "Venice"
+  ],
+  "years": [
+   1000,
+   1200,
+   1400,
+   1500,
+   1700
+  ],
+  "peak": 1500
+ },
+ {
+  "id": "dutch",
+  "label": "DUTCH EMPIRE",
+  "name": "the Dutch colonial empire",
+  "names": [
+   "Dutch Republic",
+   "Dutch East Indies",
+   "Netherlands",
+   "Dutch Brazil",
+   "Dutch Guiana",
+   "Netherlands Indies",
+   "Ceylon (Dutch)"
+  ],
+  "years": [
+   1600,
+   1650,
+   1700,
+   1900,
+   1938
+  ],
+  "peak": 1900
+ },
+ {
+  "id": "axum",
+  "label": "KINGDOM OF AKSUM",
+  "name": "the Kingdom of Aksum (Axum) in Ethiopia",
+  "names": [
+   "Axum"
+  ],
+  "years": [
+   100,
+   300,
+   500,
+   700,
+   900
+  ],
+  "peak": 500
+ },
+ {
+  "id": "golden_horde",
+  "label": "GOLDEN HORDE",
+  "name": "the Golden Horde",
+  "names": [
+   "Khanate of the Golden Horde",
+   "Golden Horde"
+  ],
+  "years": [
+   1279,
+   1300,
+   1492,
+   1500
+  ],
+  "peak": 1300
+ },
+ {
+  "id": "ghana_empire",
+  "label": "GHANA EMPIRE",
+  "name": "the medieval Ghana Empire (Wagadu) of West Africa",
+  "names": [
+   "Empire of Ghana",
+   "Ghana"
+  ],
+  "years": [
+   300,
+   500,
+   700,
+   900,
+   1100
+  ],
+  "peak": 900
+ },
+ {
+  "id": "khazar",
+  "label": "KHAZAR KHAGANATE",
+  "name": "the Khazar Khaganate",
+  "names": [
+   "Khazars"
+  ],
+  "years": [
+   600,
+   700,
+   800,
+   900,
+   1000
+  ],
+  "peak": 800
+ },
+ {
   "id": "india",
   "label": "INDIA",
   "name": "the empires that ruled India (the Maurya, the Guptas, the Delhi Sultanate, the Mughals, the British Raj) and modern India",

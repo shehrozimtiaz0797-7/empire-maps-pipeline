@@ -42,17 +42,30 @@ function pickTopic(wanted) {
     const hit = all.filter(x => x.topic.id === w || x.topic.name.toLowerCase().includes(w) || x.topic.label.toLowerCase().includes(w));
     if (hit.length) return hit.find(x => !done.includes(`${x.topic.id}:${x.angle}`)) || hit[0];
   }
-  // never-made first, but not the same empire as the last few videos; 'rise' stories first (they do best)
+  // Owner wants growth (24 Nov): a second Short about the same empire got 3-7x fewer views (Spanish 1,412 -> 189,
+  // British 1,483 -> 356). So: an empire that was NEVER made comes first; an empire that was made waits at least
+  // REST_DAYS, then the one made longest ago comes first. 'rise' stories first (they do best).
   const order = { rise: 0, full: 1, fall: 2 };
-  const fresh = all.filter(x => !done.includes(`${x.topic.id}:${x.angle}`) && !recent.includes(x.topic.id));
-  const pool = fresh.length ? fresh : all.filter(x => !recent.includes(x.topic.id));
-  // topics.json is in order of how popular the empire is: famous empires first
   const rank = x => TOPICS.indexOf(x.topic);
-  pool.sort((a, b) => order[a.angle] - order[b.angle] || rank(a) - rank(b));
+  const H = readHistory();
+  const last = {};
+  for (const h of H) { const t = Date.parse(h.date) || 0; if (!(h.topic in last) || t > last[h.topic]) last[h.topic] = t; }
+  const never = all.filter(x => !(x.topic.id in last));
+  if (never.length) {
+    never.sort((a, b) => rank(a) - rank(b) || order[a.angle] - order[b.angle]);
+    return never[0];
+  }
+  const rest = Number(process.env.REST_DAYS || 14) * 86400000;
+  const rested = all.filter(x => Date.now() - last[x.topic.id] > rest);
+  const base = rested.length ? rested : all.filter(x => !recent.includes(x.topic.id));
+  const notDone = base.filter(x => !done.includes(`${x.topic.id}:${x.angle}`));
+  const pool = notDone.length ? notDone : base;
+  pool.sort((a, b) => last[a.topic.id] - last[b.topic.id] || order[a.angle] - order[b.angle] || rank(a) - rank(b));
   return pool[0];
 }
 
 const yearText = y => (y < 0 ? `${-y} BC` : y < 1000 ? `${y} AD` : String(y));
+const recentTitles = () => { const t = readHistory().slice(-12).map(h => h.title).filter(Boolean); return t.length ? ` (recent: ${t.map(x => `"${x}"`).join(', ')})` : ''; };
 
 function prompt(p) {
   const ys = p.years.map(yearText).join(', ');
@@ -70,7 +83,7 @@ Write:
   * Only well-known, true history. No made-up numbers. Dates must match the snapshot years. Neutral tone: no praise or hate of any religion, nation or people.
 - "scenes": exactly ${p.years.length} objects, one per snapshot year, in order: {"markers": [up to 2 famous cities or battle sites that the line for that year talks about, each {"name": "short name", "lat": number, "lon": number}], "arrow": null or {"from": {"lat","lon"}, "to": {"lat","lon"}} for a famous campaign or conquest in that line}. Coordinates must be real (decimal degrees).
 - "hook_text": the on-screen title, 4 to 7 words, a curiosity title different from line 1 (e.g. "How Russia Became the Biggest Country", "The Empire That Ruled 3 Continents").
-- "title": YouTube title under 70 characters with 1 emoji at the end, curious and searchable (e.g. "How the Ottoman Empire Got So Big 🗺️").
+- "title": YouTube title under 70 characters with 1 emoji at the end, curious and searchable. It must NOT look like the channel's recent titles${recentTitles()}. Vary the format: a question ("Why Did Persia Fall So Fast? 🏛️"), a number ("3 Battles That Made the Mongols 🐎"), a surprise ("This Tiny City Ruled the Mediterranean ⚓"), or "How X ..." — and avoid starting with "Rise and Fall" or "How the" if a recent title did.
 - "description": 2 short sentences about the video, then a blank line, then 4 hashtags (#history #maps #shorts and one about the empire).
 - "tags": 10 to 14 search tags.
 

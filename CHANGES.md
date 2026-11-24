@@ -1,5 +1,17 @@
 # Changes
 
+## 2026-11-24 (16:20 MY) Growth: no more repeat empires, 19 new empires, varied titles
+- Owner: "karo jo karna hai mujh grow chaye". Data: a second Short about the same empire got 3-7x fewer views
+  (Spanish 1,412 -> 189, British 1,483 -> 356, Russia 1,231 -> 444, USA 1,184 -> 454), and all 26 old empires had
+  already been made, so the pipeline was repeating them.
+- topics.json: 19 new empires first (persia, alexander, egypt_ancient, inca, caliphates, timurid, carthage, maratha,
+  chola, assyria, mamluk, vijayanagara, hittite, venice, dutch, axum, golden_horde, ghana_empire, khazar); every name
+  checked in every listed year of historical-basemaps.
+- src/script.js pickTopic: an empire never made comes first; a made empire waits REST_DAYS (14) and then the one made
+  longest ago comes first; angles not made yet are preferred.
+- Title prompt: shows the last 12 titles and asks for a different format (question / number / surprise), avoiding
+  "Rise and Fall" / "How the" when recent titles used them.
+
 ## 2026-11-24 (04:40 MY) Long videos stopped by the owner
 - Owner: "empire long video khatam kar do band kar". long-video.yml is disabled (GitHub Actions -> Enable workflow to
   start again) and the run that was in progress was cancelled. Shorts are not changed.
