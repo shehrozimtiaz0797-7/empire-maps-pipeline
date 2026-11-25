@@ -51,11 +51,23 @@ function pickTopic(wanted) {
   const last = {};
   for (const h of H) { const t = Date.parse(h.date) || 0; if (!(h.topic in last) || t > last[h.topic]) last[h.topic] = t; }
   const never = all.filter(x => !(x.topic.id in last));
+  // 25 Nov data: famous empires do best (Rome 2,503, Mongol 1,604, Ottoman 1,565); little-known new ones start slow.
+  // So every other Short is a famous empire again (once it has rested REST_DAYS) and the rest are new empires.
+  const rest = Number(process.env.REST_DAYS || 7) * 86400000;
+  const FAMOUS = ['roman', 'ottoman', 'mongol', 'qing', 'japan', 'british', 'spanish', 'habsburg', 'austria', 'poland',
+    'russian', 'mughal', 'byzantine', 'germany', 'usa', 'french', 'persia', 'alexander', 'egypt_ancient', 'india', 'china'];
+  const lastWasNew = H.length && H.slice(0, -1).every(h => h.topic !== H[H.length - 1].topic);
+  const famousReady = all.filter(x => FAMOUS.includes(x.topic.id) && x.topic.id in last && Date.now() - last[x.topic.id] > rest);
+  if ((lastWasNew || !never.length) && famousReady.length) {
+    const nd = famousReady.filter(x => !done.includes(`${x.topic.id}:${x.angle}`));
+    const fp = nd.length ? nd : famousReady;
+    fp.sort((a, b) => FAMOUS.indexOf(a.topic.id) - FAMOUS.indexOf(b.topic.id) || order[a.angle] - order[b.angle]);
+    return fp[0];
+  }
   if (never.length) {
     never.sort((a, b) => rank(a) - rank(b) || order[a.angle] - order[b.angle]);
     return never[0];
   }
-  const rest = Number(process.env.REST_DAYS || 14) * 86400000;
   const rested = all.filter(x => Date.now() - last[x.topic.id] > rest);
   const base = rested.length ? rested : all.filter(x => !recent.includes(x.topic.id));
   const notDone = base.filter(x => !done.includes(`${x.topic.id}:${x.angle}`));
@@ -83,7 +95,7 @@ Write:
   * Only well-known, true history. No made-up numbers. Dates must match the snapshot years. Neutral tone: no praise or hate of any religion, nation or people.
 - "scenes": exactly ${p.years.length} objects, one per snapshot year, in order: {"markers": [up to 2 famous cities or battle sites that the line for that year talks about, each {"name": "short name", "lat": number, "lon": number}], "arrow": null or {"from": {"lat","lon"}, "to": {"lat","lon"}} for a famous campaign or conquest in that line}. Coordinates must be real (decimal degrees).
 - "hook_text": the on-screen title, 4 to 7 words, a curiosity title different from line 1 (e.g. "How Russia Became the Biggest Country", "The Empire That Ruled 3 Continents").
-- "title": YouTube title under 70 characters with 1 emoji at the end, curious and searchable. It must NOT look like the channel's recent titles${recentTitles()}. Vary the format: a question ("Why Did Persia Fall So Fast? 🏛️"), a number ("3 Battles That Made the Mongols 🐎"), a surprise ("This Tiny City Ruled the Mediterranean ⚓"), or "How X ..." — and avoid starting with "Rise and Fall" or "How the" if a recent title did.
+- "title": YouTube title under 70 characters with 1 emoji at the end. Use the format that works best on this channel (its top Shorts, 1,200-2,500 views each): "How [the] <Empire> <strong verb phrase>", e.g. "How Rome Conquered the Ancient World 🗺️", "How the Mongol Empire Rose to Greatness 🐎", "How Poland-Lithuania Became Europe's Superpower ⚔️", "How the Khmer Empire Took Over Southeast Asia 🗺️". Put the empire's best-known name first so it is searchable. Do NOT start with "Rise and Fall" or "Why". Do not copy these recent titles word for word${recentTitles()}.
 - "description": 2 short sentences about the video, then a blank line, then 4 hashtags (#history #maps #shorts and one about the empire).
 - "tags": 10 to 14 search tags.
 

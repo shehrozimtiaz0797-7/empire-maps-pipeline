@@ -1,5 +1,12 @@
 # Changes
 
+## 2026-11-25 (22:45 MY) Growth: famous empires back, proven title format
+- Owner (25 Nov): "Empire Maps ko grow karna ... khuch b change karna hu tumay full permission hai".
+- Data: week-1 Shorts (famous empires, "How the X Grew/Conquered..." titles) got 1,000-2,500 views each; the new
+  little-known empires with question titles got 6-252 in their first day.
+- pickTopic: every other Short is a famous empire again (FAMOUS list, after REST_DAYS = 7), the others are new empires.
+- Title prompt: back to the channel's best format "How [the] <Empire> <verb phrase>"; no "Rise and Fall" / "Why".
+
 ## 2026-11-25 (02:05 MY) Shorts start fast, short tail (Shorts algorithm: swipe decision in the first 1-2 s)
 - Voice now starts at 0.5 s (was 1.6 s of title + music only); the end card comes sooner and the tail is 1.4 s
   (was 2.2 s) so the Short loops back quickly (rewatches count). INTRO_S / TAIL_S env vars. Tested on branch
