@@ -1,0 +1,104 @@
+name: Empire Maps MEGA video (30+ min, one-off)
+
+on:
+  # One-off 30+ minute video asked for by the owner on 26 Nov (no daily runs). Uploads PUBLIC when done.
+  workflow_dispatch:
+    inputs:
+      upload:
+        description: "Upload to YouTube (off = test only)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: empire-maps-mega
+  cancel-in-progress: false
+
+jobs:
+  make-mega:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    env:
+      TZ: Asia/Kuala_Lumpur
+      FFMPEG_PATH: ffmpeg
+      PYTHON: python
+      YT_CATEGORY: "27"
+      BRAND: "EMPIRE MAPS"
+      PUBLISH_UTC: "16:30"
+      GEMINI_TEXT_MODEL: gemini-3.8-flash
+      GEMINI_TTS_MODEL: gemini-3.8-flash-tts
+      LONG_VOICE: Charon
+      LONG_VOICE_CHUNKS: "9"
+      WHISPER_MODEL: base.en
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pillow numpy requests faster-whisper==1.1.1
+      - name: Reuse the speech model between runs
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: whisper-base-en-v1
+      - name: Keep the border maps between runs
+        uses: actions/cache@v4
+        with:
+          path: data
+          key: borders-v1
+      - name: Make the 30+ minute video
+        env:
+          DO_UPLOAD: ${{ inputs.upload }}
+        run: |
+          set --
+          if [ "$DO_UPLOAD" != "true" ]; then set -- "$@" --no-upload; fi
+          node long/make-mega.js "$@" 2>&1 | tee long.log
+          exit ${PIPESTATUS[0]}
+      - name: Save long-video history
+        if: success()
+        run: |
+          [ -f long-history.json ] || exit 0
+          git config user.name "empire-maps-bot"
+          git config user.email "empire-maps-bot@users.noreply.github.com"
+          git add long-history.json
+          git commit -m "Long video history $(date +'%Y-%m-%d %H:%M')" || exit 0
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done
+      - name: Save a preview for checking (qa-long branch)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          D=$(ls -d output/mega-*/ 2>/dev/null | tail -1)
+          mkdir -p /tmp/qa
+          cp long.log /tmp/qa/ 2>/dev/null || true
+          if [ -n "$D" ]; then cp "$D/preview.mp4" "$D/thumb.jpg" "$D/script.json" "$D/meta.json" "$D/long.json" /tmp/qa/ 2>/dev/null || true; fi
+          cd /tmp/qa
+          git init -q -b qa-mega
+          git add .
+          git -c user.name=empire-maps-bot -c user.email=empire-maps-bot@users.noreply.github.com commit -qm "long preview $(date +'%Y-%m-%d %H:%M')"
+          git push -qf "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" qa-mega || echo "could not save preview"
+      - name: Keep the full video for 3 days (download from this run page)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: empire-maps-mega-${{ github.run_number }}
+          path: |
+            output/mega-*/final.mp4
+            output/mega-*/thumb.jpg
+            long.log
+          retention-days: 3
+          if-no-files-found: ignore
