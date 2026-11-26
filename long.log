@@ -1,0 +1,57 @@
+[2026-11-26 13:26:13] MEGA video: Rome: the complete 2,000-year history, from the Republic to the fall of Constantinople
+[2026-11-26 13:26:32] Chapter 1 attempt 1: too short (8 paragraphs, 270 words)
+[2026-11-26 13:35:22] Chapter 1: fact-check changed 7
+[2026-11-26 13:35:22] Chapter 1 "The Birth of Rome": 8 paragraphs, 312 words
+[2026-11-26 13:41:38] Chapter 2 "The Republic Conquers Italy": 7 paragraphs, 417 words
+[2026-11-26 13:51:20] Chapter 3: fact-check changed 1
+[2026-11-26 13:51:20] Chapter 3 "Rome Against Carthage": 8 paragraphs, 489 words
+[2026-11-26 13:52:29] Chapter 4: fact-check changed 1
+[2026-11-26 13:52:29] Chapter 4 "Masters of the Mediterranean": 7 paragraphs, 374 words
+[gemini] gemini-3.5-flash: used the backup key
+[2026-11-26 13:57:49] Chapter 5 "Caesar and the First Emperor": 7 paragraphs, 381 words
+[gemini] gemini-3.5-flash: used the backup key
+[2026-11-26 14:05:34] Chapter 6 "The Golden Age": 7 paragraphs, 403 words
+[2026-11-26 14:11:56] Chapter 7 "The Empire in Crisis": 7 paragraphs, 370 words
+[2026-11-26 14:20:29] Chapter 8 "East and West Split": 7 paragraphs, 396 words
+[gemini] gemini-3.5-flash: used the backup key
+[2026-11-26 14:26:49] Chapter 9 "Justinian's Dream": 6 paragraphs, 336 words
+[2026-11-26 14:28:01] Chapter 10: fact-check changed 1
+[2026-11-26 14:28:01] Chapter 10 "The Byzantine Empire": 7 paragraphs, 407 words
+[2026-11-26 14:29:13] Chapter 11 "Crusades and Decline": 7 paragraphs, 355 words
+[2026-11-26 14:30:23] Chapter 12: fact-check changed 1
+[2026-11-26 14:30:23] Chapter 12 "The Last Days of Rome": 6 paragraphs, 359 words
+[2026-11-26 14:30:23] Script: 12 chapters, 4609 words
+[2026-11-26 14:31:33] Voice chunk 1: 176.3s
+[2026-11-26 14:32:09] Voice chunk 2: 240.6s
+[2026-11-26 14:32:45] Voice chunk 3: 224.3s
+[2026-11-26 14:33:20] Voice chunk 4: 221.0s
+[2026-11-26 14:34:00] Voice chunk 5: 262.2s
+[2026-11-26 14:34:35] Voice chunk 6: 212.5s
+[2026-11-26 14:35:12] Voice chunk 7: 262.8s
+[2026-11-26 14:35:48] Voice chunk 8: 224.7s
+[2026-11-26 14:36:14] Voice chunk 9: 103.2s
+[2026-11-26 14:38:16] align: voice1.wav: 431/438 script words found in 455 spoken words
+align: voice2.wav: 598/614 script words found in 634 spoken words
+align: voice3.wav: 537/545 script words found in 565 spoken words
+align: voice4.wav: 554/560 script words found in 579 spoken words
+align: voice5.wav: 528/549 script words found in 567 spoken words
+align: voice6.wav: 529/549 script words found in 561 spoken words
+align: voice7.wav: 600/610 script words found in 628 spoken words
+align: voice8.wav: 498/506 script words found in 526 spoken words
+align: voice9.wav: 230/238 script words found in 256 spoken words
+[2026-11-26 14:38:16] Voice chunk 1: using 9.8s to 176.1s of 176.3s
+[2026-11-26 14:38:16] Voice chunk 2: using 9.6s to 240.6s of 240.6s
+[2026-11-26 14:38:16] Voice chunk 3: using 10.3s to 223.6s of 224.3s
+[2026-11-26 14:38:16] Voice chunk 4: using 9.7s to 221.0s of 221.0s
+[2026-11-26 14:38:16] Voice chunk 5: using 10.6s to 262.2s of 262.2s
+[2026-11-26 14:38:16] Voice chunk 6: using 8.7s to 212.5s of 212.5s
+[2026-11-26 14:38:16] Voice chunk 7: using 9.3s to 262.7s of 262.8s
+[2026-11-26 14:38:16] Voice chunk 8: using 9.4s to 224.7s of 224.7s
+[2026-11-26 14:38:16] Voice chunk 9: using 8.9s to 103.2s of 103.2s
+[2026-11-26 15:30:03] video frames: 46236
+captions: 4607 words with real times
+caption lines: 975
+long video done
+[2026-11-26 15:30:03] Video ready: 30.8 min
+[2026-11-26 15:30:09] Uploaded: https://youtube.com/watch?v=ViW4lyF5i50 (public)
+[2026-11-26 15:30:13] Thumbnail set
