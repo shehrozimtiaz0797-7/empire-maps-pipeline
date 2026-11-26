@@ -1,5 +1,11 @@
 # Changes
 
+## 2026-11-26 — one 30+ minute video (owner asked, one time only)
+- Owner: "ek long video banao 30+ minutes ki ... bs ek he video chaye roz roz ni chaye and abi upload kar do".
+- New `long/make-mega.js` (copy of make-long.js): script written chapter by chapter from `long/mega-topic.json` (12 chapters x ~400 words, each fact-checked), voice in 9 chunks (main Gemini key, backup key on 429), uploads PUBLIC at once. No slot guard, no schedule.
+- Topic: Rome, the complete 2,000-year history (Republic -> Empire -> Byzantium -> 1453), 19 map years, borders names checked per year in historical-basemaps.
+- New workflow `mega-video.yml`: workflow_dispatch only (no cron), timeout 330 min. The daily long-video.yml stays DISABLED.
+
 ## 2026-11-25 (22:45 MY) Growth: famous empires back, proven title format
 - Owner (25 Nov): "Empire Maps ko grow karna ... khuch b change karna hu tumay full permission hai".
 - Data: week-1 Shorts (famous empires, "How the X Grew/Conquered..." titles) got 1,000-2,500 views each; the new
