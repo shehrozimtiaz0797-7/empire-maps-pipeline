@@ -1,0 +1,166 @@
+{
+ "id": "rome_mega",
+ "label": "ROMAN EMPIRE",
+ "name": "Rome: the complete 2,000-year history, from the Republic to the fall of Constantinople",
+ "names": [
+  "Rome",
+  "Roman Republic",
+  "Roman Empire",
+  "Rome (Constantinus)",
+  "Rome (Diocletianus)",
+  "Rome (Galerius)",
+  "Rome (Maximian)",
+  "Eastern Roman Empire",
+  "Western Roman Empire",
+  "Byzantine Empire"
+ ],
+ "years": [
+  -500,
+  -400,
+  -300,
+  -200,
+  -100,
+  -1,
+  100,
+  200,
+  300,
+  400,
+  600,
+  700,
+  800,
+  900,
+  1000,
+  1100,
+  1200,
+  1300,
+  1400
+ ],
+ "labels": {
+  "-500": "ROMAN REPUBLIC",
+  "-400": "ROMAN REPUBLIC",
+  "-300": "ROMAN REPUBLIC",
+  "-200": "ROMAN REPUBLIC",
+  "-100": "ROMAN REPUBLIC",
+  "-1": "ROMAN EMPIRE",
+  "100": "ROMAN EMPIRE",
+  "200": "ROMAN EMPIRE",
+  "300": "ROMAN EMPIRE (TETRARCHY)",
+  "400": "ROMAN EMPIRE (WEST + EAST)",
+  "600": "EASTERN ROMAN EMPIRE",
+  "700": "EASTERN ROMAN EMPIRE",
+  "800": "BYZANTINE EMPIRE",
+  "900": "BYZANTINE EMPIRE",
+  "1000": "BYZANTINE EMPIRE",
+  "1100": "BYZANTINE EMPIRE",
+  "1200": "BYZANTINE EMPIRE",
+  "1300": "BYZANTINE EMPIRE",
+  "1400": "BYZANTINE EMPIRE"
+ },
+ "peak": 100,
+ "minutes": 32,
+ "chapters": [
+  {
+   "heading": "The Birth of Rome",
+   "about": "from the legendary founding (753 BC) and the kings to the start of the Republic (509 BC) and early wars in Italy",
+   "years": [
+    -500
+   ],
+   "words": 400
+  },
+  {
+   "heading": "The Republic Conquers Italy",
+   "about": "the Roman Republic, its consuls and senate, and the wars that made Rome master of Italy",
+   "years": [
+    -400,
+    -300
+   ],
+   "words": 400
+  },
+  {
+   "heading": "Rome Against Carthage",
+   "about": "the Punic Wars: Hannibal crossing the Alps, Cannae, Scipio and Zama, and the destruction of Carthage",
+   "years": [
+    -200
+   ],
+   "words": 400
+  },
+  {
+   "heading": "Masters of the Mediterranean",
+   "about": "expansion into Greece, Spain and the East; wealth, slaves and the crisis of the Republic (Gracchi, Marius, Sulla)",
+   "years": [
+    -100
+   ],
+   "words": 400
+  },
+  {
+   "heading": "Caesar and the First Emperor",
+   "about": "Julius Caesar, the civil wars, his assassination, and Augustus becoming the first emperor",
+   "years": [
+    -1
+   ],
+   "words": 400
+  },
+  {
+   "heading": "The Golden Age",
+   "about": "the Pax Romana, Trajan's conquests and the empire at its peak, roads, cities and law",
+   "years": [
+    100
+   ],
+   "words": 400
+  },
+  {
+   "heading": "The Empire in Crisis",
+   "about": "the third-century crisis, soldier emperors, Diocletian's Tetrarchy and Constantine",
+   "years": [
+    200,
+    300
+   ],
+   "words": 400
+  },
+  {
+   "heading": "East and West Split",
+   "about": "the division of the empire, the barbarian invasions, the sack of Rome (410) and the fall of the West (476)",
+   "years": [
+    400
+   ],
+   "words": 400
+  },
+  {
+   "heading": "Justinian's Dream",
+   "about": "the Eastern Roman Empire, Justinian's reconquest, the plague, and the wars with Persia and the Arab conquests",
+   "years": [
+    600,
+    700
+   ],
+   "words": 400
+  },
+  {
+   "heading": "The Byzantine Empire",
+   "about": "the medieval Byzantine Empire: Constantinople, Greek fire, the Macedonian dynasty and Basil II",
+   "years": [
+    800,
+    900,
+    1000
+   ],
+   "words": 400
+  },
+  {
+   "heading": "Crusades and Decline",
+   "about": "Manzikert (1071), the Crusades, the sack of Constantinople in 1204 and the weakened empire",
+   "years": [
+    1100,
+    1200,
+    1300
+   ],
+   "words": 400
+  },
+  {
+   "heading": "The Last Days of Rome",
+   "about": "the rise of the Ottomans and the fall of Constantinople in 1453, the end of 2,000 years of Rome",
+   "years": [
+    1400
+   ],
+   "words": 400
+  }
+ ]
+}
