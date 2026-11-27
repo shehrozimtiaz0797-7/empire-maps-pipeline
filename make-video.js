@@ -70,7 +70,7 @@ function cleanup() {
   if (!voice && !SAMPLE) throw new Error('No voice (Gemini TTS failed or its free daily limit is used up). Not uploading a silent video.');
   // Shorts must stay 30-40 s (owner's choice, 22 Nov). The video is the voice + 3.8 s, so if a slow voice runs over
   // MAX_VOICE seconds, speed it up a little (at most 15%, which still sounds natural).
-  const MAX_VOICE = Number(env('MAX_VOICE', '36'));
+  const MAX_VOICE = Number(env('MAX_VOICE', '75')); // week-1 Shorts were 45-66 s: only a very slow voice is sped up
   if (voice && voice.dur > MAX_VOICE) {
     const f = Math.min(voice.dur / MAX_VOICE, 1.15);
     const fast = path.join(dir, 'voice_fast.wav');
