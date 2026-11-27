@@ -1,5 +1,12 @@
 # Changes
 
+## 2026-11-28 (06:10 MY) Repeat Shorts must look new
+- The 27 Nov 22:50 Rome rise Short got only 3 views in 15 h (Assyria, a new empire, got 277 in 3 h). Its on-screen hook
+  "How Rome Conquered the Ancient World" was the same as the 14 Nov Rome Short (the prompt even used it as an example),
+  so YouTube likely treated it as a re-upload and did not push it.
+- Prompt: lists all earlier titles of the same empire and asks for a different hook line, rulers, battles and turning points;
+  examples no longer include Rome. Validation rejects a title or hook_text equal to an earlier one of that empire.
+
 ## 2026-11-27 (21:45 MY) Shorts back to the week-1 style (owner: "mujh bs wesa he chaye jesy 1000+ view har video ma aty thy jo karna karo")
 - Week 1 (14-20 Nov) every Short got 800-2,500 views: rise stories, famous empires, 45-66 s, up to 7 maps, 10-18 words a line, 1.6 s title first.
 - Undone: the 30-40 s limit (MAX_MAPS 5 -> 7, words per line back to 10-18, total (n+1)*13..16, MAX_VOICE 36 -> 75 s) and the 0.5 s intro / short tail (back to 1.6 s / 2.2 s, outro fade as before).
