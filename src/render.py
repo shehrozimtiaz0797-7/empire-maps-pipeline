@@ -485,8 +485,8 @@ for fi in range(nframes):
                     x += wd
 
     # outro
-    if t > VEND + 0.1:
-        a = int(255 * ease((t - VEND - 0.1) / 0.35))
+    if t > VEND + 0.2:
+        a = int(255 * ease((t - VEND - 0.2) / 0.5))
         text_c(d, (W / 2, 1660), "WHICH EMPIRE NEXT?", f_title, (255, 248, 230, a), stroke=6, sfill=(0, 0, 0, a))
         text_c(d, (W / 2, 1752), "Tell me in the comments", f_cap, (242, 193, 78, a), stroke=5, sfill=(0, 0, 0, a))
 
