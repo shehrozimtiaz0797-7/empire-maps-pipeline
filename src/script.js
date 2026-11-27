@@ -42,38 +42,47 @@ function pickTopic(wanted) {
     const hit = all.filter(x => x.topic.id === w || x.topic.name.toLowerCase().includes(w) || x.topic.label.toLowerCase().includes(w));
     if (hit.length) return hit.find(x => !done.includes(`${x.topic.id}:${x.angle}`)) || hit[0];
   }
-  // Owner wants growth (24 Nov): a second Short about the same empire got 3-7x fewer views (Spanish 1,412 -> 189,
-  // British 1,483 -> 356). So: an empire that was NEVER made comes first; an empire that was made waits at least
-  // REST_DAYS, then the one made longest ago comes first. 'rise' stories first (they do best).
-  const order = { rise: 0, full: 1, fall: 2 };
-  const rank = x => TOPICS.indexOf(x.topic);
+  // 27 Nov data (44 Shorts): EVERY 'rise' Short (empire growing on the map) got 795-2,503 views, even little-known
+  // empires (Khmer 1,157, Songhai 1,043, Srivijaya 892). 'full'/'fall' Shorts mostly got 100-900 (Spanish full 272,
+  // Persia 6). From 20 Nov the picker ran out of rise stories and made only 'full' ones -> daily views fell.
+  // A second RISE of a top empire still works (Ottoman 1,565 then 1,250). So now: only rise stories, every other
+  // Short a famous empire, an empire rests REST_DAYS (default 6) before it comes back, least recently used first.
   const H = readHistory();
-  const last = {};
-  for (const h of H) { const t = Date.parse(h.date) || 0; if (!(h.topic in last) || t > last[h.topic]) last[h.topic] = t; }
-  const never = all.filter(x => !(x.topic.id in last));
-  // 25 Nov data: famous empires do best (Rome 2,503, Mongol 1,604, Ottoman 1,565); little-known new ones start slow.
-  // So every other Short is a famous empire again (once it has rested REST_DAYS) and the rest are new empires.
-  const rest = Number(process.env.REST_DAYS || 7) * 86400000;
-  const FAMOUS = ['roman', 'ottoman', 'mongol', 'qing', 'japan', 'british', 'spanish', 'habsburg', 'austria', 'poland',
-    'russian', 'mughal', 'byzantine', 'germany', 'usa', 'french', 'persia', 'alexander', 'egypt_ancient', 'india', 'china'];
-  const lastWasNew = H.length && H.slice(0, -1).every(h => h.topic !== H[H.length - 1].topic);
-  const famousReady = all.filter(x => FAMOUS.includes(x.topic.id) && x.topic.id in last && Date.now() - last[x.topic.id] > rest);
-  if ((lastWasNew || !never.length) && famousReady.length) {
-    const nd = famousReady.filter(x => !done.includes(`${x.topic.id}:${x.angle}`));
-    const fp = nd.length ? nd : famousReady;
-    fp.sort((a, b) => FAMOUS.indexOf(a.topic.id) - FAMOUS.indexOf(b.topic.id) || order[a.angle] - order[b.angle]);
-    return fp[0];
+  const last = {}, count = {};
+  const key = id => (id === 'byz_ott' ? 'ottoman' : id); // the same empire told twice
+  for (const h of H) {
+    const tm = Date.parse(h.date) || 0, k = key(h.topic);
+    if (!(k in last) || tm > last[k]) last[k] = tm;
+    if (h.angle === 'rise') count[h.topic] = (count[h.topic] || 0) + 1;
   }
-  if (never.length) {
-    never.sort((a, b) => rank(a) - rank(b) || order[a.angle] - order[b.angle]);
-    return never[0];
-  }
-  const rested = all.filter(x => Date.now() - last[x.topic.id] > rest);
-  const base = rested.length ? rested : all.filter(x => !recent.includes(x.topic.id));
-  const notDone = base.filter(x => !done.includes(`${x.topic.id}:${x.angle}`));
-  const pool = notDone.length ? notDone : base;
-  pool.sort((a, b) => last[a.topic.id] - last[b.topic.id] || order[a.angle] - order[b.angle] || rank(a) - rank(b));
+  const rest = Number(process.env.REST_DAYS || 6) * 86400000;
+  const FAMOUS = ['roman', 'ottoman', 'mongol', 'british', 'spanish', 'japan', 'qing', 'russian', 'mughal', 'usa',
+    'austria', 'germany', 'poland', 'french', 'byz_ott', 'holy_roman', 'portuguese', 'swedish', 'india', 'china'];
+  const isF = id => FAMOUS.includes(id);
+  const seen = x => key(x.topic.id) in last;
+  const lastT = H.length ? H[H.length - 1].topic : null;
+  const wantFamous = !lastT || !isF(lastT);
+  const now = Date.now();
+  const rises = TOPICS.map(t => riseOf(t, count[t.id] || 0)).filter(Boolean);
+  const ready = rises.filter(x => !seen(x) || now - last[key(x.topic.id)] > rest);
+  const score = x => (seen(x) ? last[key(x.topic.id)] : -1);
+  // famous: the most popular first (Rome, Ottoman, Mongol, British...); others: never made first, then the oldest
+  const byAge = (a, b) => (isF(a.topic.id) && isF(b.topic.id) ? FAMOUS.indexOf(a.topic.id) - FAMOUS.indexOf(b.topic.id) : score(a) - score(b) || TOPICS.indexOf(a.topic) - TOPICS.indexOf(b.topic));
+  let pool = ready.filter(x => isF(x.topic.id) === wantFamous);
+  if (!pool.length) pool = ready;
+  if (!pool.length) { const recent = H.slice(-8).map(h => h.topic); pool = rises.filter(x => !recent.includes(x.topic.id)).sort((a, b) => score(a) - score(b)); return pool[0] || rises[0]; }
+  pool.sort(byAge);
   return pool[0];
+}
+
+// The growth story of an empire: from its first map to its peak (needs 3+ maps before the peak, so the land visibly grows).
+// A repeat uses the last maps before the peak (the big expansion) so it does not look the same as the first one.
+function riseOf(t, made) {
+  const i = t.years.indexOf(t.peak);
+  if (i < 2) return null;
+  let ys = t.years.slice(0, i + 1);
+  if (ys.length > MAX_MAPS) ys = made % 2 ? ys.slice(-MAX_MAPS) : pickSpread(ys, MAX_MAPS, t.peak);
+  return { topic: t, angle: 'rise', years: ys };
 }
 
 const yearText = y => (y < 0 ? `${-y} BC` : y < 1000 ? `${y} AD` : String(y));
