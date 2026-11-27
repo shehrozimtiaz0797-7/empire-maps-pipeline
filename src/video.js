@@ -7,8 +7,8 @@ const { ROOT, log, run, FFMPEG, PYTHON } = require('./lib');
 async function buildVideo(script, voice, dir) {
   // Shorts algorithm (25 Nov): viewers decide to swipe in the first 1-2 s, so the voice starts almost at once (was
   // 1.6 s of title only), and the tail is short so the Short loops back to the start quickly (rewatches count).
-  const VSTART = Number(process.env.INTRO_S || 0.5);
-  const TAIL = Number(process.env.TAIL_S || 1.4);
+  const VSTART = Number(process.env.INTRO_S || 1.6); // week-1 values again (27 Nov)
+  const TAIL = Number(process.env.TAIL_S || 2.2);
   const speakDur = voice ? voice.dur : Math.max(20, script.lines.join(' ').split(' ').length / 2.6);
   const total = VSTART + speakDur + TAIL;
   let starts, ends;
