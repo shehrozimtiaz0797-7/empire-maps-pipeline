@@ -14,12 +14,12 @@ function addHistory(entry) {
   fs.writeFileSync(HISTORY, JSON.stringify(h.slice(-500), null, 2));
 }
 
-const MAX_MAPS = 5;
+const MAX_MAPS = 7; // week-1 style (14-20 Nov, 1,000-2,500 views each): up to 7 maps, ~45-60 s
 // Every topic can be told 3 ways: the rise (start -> peak), the fall (peak -> end) and the whole story.
 function angles(t) {
   const i = t.years.indexOf(t.peak);
   const out = [];
-  // At most MAX_MAPS snapshot years per Short, so the Short stays about 30-40 seconds (owner's choice, 22 Nov).
+  // At most MAX_MAPS snapshot years per Short (week-1 style again, owner 27 Nov: "wesa he chaye jesy 1000+ view").
   const cap = ys => (ys.length > MAX_MAPS ? pickSpread(ys, MAX_MAPS, ys.includes(t.peak) ? t.peak : ys[0]) : ys);
   if (i >= 2) out.push({ angle: 'rise', years: cap(t.years.slice(0, i + 1)) });
   if (i >= 0 && t.years.length - i >= 3) out.push({ angle: 'fall', years: cap(t.years.slice(i)) });
@@ -39,8 +39,10 @@ function pickTopic(wanted) {
   for (const t of TOPICS) for (const a of angles(t)) all.push({ topic: t, ...a });
   if (wanted) {
     const w = String(wanted).toLowerCase();
+    const exact = TOPICS.find(t => t.id === w);
+    if (exact && riseOf(exact, 0)) return riseOf(exact, readHistory().filter(h => h.topic === w && h.angle === 'rise').length);
     const hit = all.filter(x => x.topic.id === w || x.topic.name.toLowerCase().includes(w) || x.topic.label.toLowerCase().includes(w));
-    if (hit.length) return hit.find(x => !done.includes(`${x.topic.id}:${x.angle}`)) || hit[0];
+    if (hit.length) return hit.find(x => x.angle === 'rise') || hit.find(x => !done.includes(`${x.topic.id}:${x.angle}`)) || hit[0];
   }
   // 27 Nov data (44 Shorts): EVERY 'rise' Short (empire growing on the map) got 795-2,503 views, even little-known
   // empires (Khmer 1,157, Songhai 1,043, Srivijaya 892). 'full'/'fall' Shorts mostly got 100-900 (Spanish full 272,
@@ -91,7 +93,7 @@ const recentTitles = () => { const t = readHistory().slice(-12).map(h => h.title
 function prompt(p) {
   const ys = p.years.map(yearText).join(', ');
   const story = { rise: `how ${p.topic.name} grew from small beginnings to its peak`, fall: `how ${p.topic.name} shrank and fell after its peak`, full: `the whole rise and fall of ${p.topic.name}` }[p.angle];
-  return `You write narration for "Empire Maps", a YouTube Shorts channel of animated history maps (like Kings and Generals, but only 30-40 seconds).
+  return `You write narration for "Empire Maps", a YouTube Shorts channel of animated history maps (like Kings and Generals, but 50 seconds).
 The video shows the borders of ${p.topic.name} on a map at these snapshot years, one after another: ${ys}.
 Story of this video: ${story}.
 
@@ -100,7 +102,7 @@ Write:
   * Line 1 is the hook: it must make people stay (surprise, contrast or a question), e.g. "In 1300, Moscow was a small town. 600 years later, it ruled a sixth of the world."
   * Each middle line starts with its year ("By 1530, ...", "In 1700, ...") and says what changed on the map around that time: conquests, wars, losses, who they fought. Name real places and real rulers.
   * The last line lands the story in one strong sentence, then asks the viewer a question to answer in the comments.
-  * 7 to 10 words per line, never more than 11. ${Math.round((p.years.length + 1) * 8)} to ${Math.round((p.years.length + 1) * 10)} words in total (the whole Short must stay under 40 seconds), so keep every line short and punchy. Simple, vivid English, like a great documentary narrator.
+  * 10 to 18 words per line. ${Math.round((p.years.length + 1) * 13)} to ${Math.round((p.years.length + 1) * 16)} words in total. Simple, vivid English, like a great documentary narrator.
   * Only well-known, true history. No made-up numbers. Dates must match the snapshot years. Neutral tone: no praise or hate of any religion, nation or people.
 - "scenes": exactly ${p.years.length} objects, one per snapshot year, in order: {"markers": [up to 2 famous cities or battle sites that the line for that year talks about, each {"name": "short name", "lat": number, "lon": number}], "arrow": null or {"from": {"lat","lon"}, "to": {"lat","lon"}} for a famous campaign or conquest in that line}. Coordinates must be real (decimal degrees).
 - "hook_text": the on-screen title, 4 to 7 words, a curiosity title different from line 1 (e.g. "How Russia Became the Biggest Country", "The Empire That Ruled 3 Continents").
@@ -115,7 +117,7 @@ function checkPrompt(p, s) {
   return `You are a careful history fact-checker. These narration lines go with maps of ${p.topic.name} at the years ${p.years.map(yearText).join(', ')} (the last line is a closing line).
 ${JSON.stringify(s.lines, null, 1)}
 
-Fix any line that has a wrong fact, a wrong date, an exaggeration presented as fact, or that does not fit its year. Keep the same number of lines, the same style and about the same length (7 to 11 words each, the Short must stay under 40 seconds). Keep correct lines exactly as they are.
+Fix any line that has a wrong fact, a wrong date, an exaggeration presented as fact, or that does not fit its year. Keep the same number of lines, the same style and about the same length (10 to 18 words each). Keep correct lines exactly as they are.
 Return ONLY JSON: {"lines": [...], "changed": number of lines you changed}`;
 }
 
@@ -137,7 +139,7 @@ function validate(p, s) {
   const lines = (s.lines || []).map(l => String(l).replace(/\s+/g, ' ').trim()).filter(Boolean);
   if (lines.length !== n + 1) throw new Error(`need ${n + 1} lines, got ${lines.length}`);
   const words = lines.join(' ').split(' ').length;
-  if (words < (n + 1) * 6 || words > (n + 1) * 11) throw new Error(`script is ${words} words (max ${(n + 1) * 11} for a 30-40 s Short)`);
+  if (words < (n + 1) * 9 || words > (n + 1) * 19) throw new Error(`script is ${words} words`);
   const hook = String(s.hook_text || '').trim();
   if (!hook || hook.split(/\s+/).length > 9) throw new Error('bad hook_text');
   return {
