@@ -1,5 +1,16 @@
 # Changes
 
+## 2026-11-27 (16:30 MY) Growth fix: only "rise" Shorts again
+- Owner: "channel down hota jarah hai mujh grow chaye jo error ya galati hai isko fix karo".
+- Found the cause in 44 Shorts of data: every RISE Short (empire growing on the map) got 795-2,503 views, even little-known ones
+  (Khmer 1,157, Songhai 1,043, Srivijaya 892). FULL (rise+fall) Shorts mostly got 100-900 (Spanish 272, Qing 344, Persia 6).
+  From 20 Nov the picker had used up the rise stories and the new 24 Nov empires mostly had no rise (peak = first map), so
+  almost every Short became a "full" one -> daily views fell from ~4,800 to ~1,800.
+- Also a bug: the "every other Short famous" rule needed a famous empire rested 7 days; none was, so new empires ran back to back.
+- New pickTopic: only rise stories (3+ maps before the peak); every other Short famous (Rome, Ottoman, Mongol, British, Spanish,
+  Japan, Qing, Russia, Mughal, USA, Habsburg, Germany, Poland ...); an empire rests REST_DAYS=6 days; a repeat rise uses the
+  last maps before the peak so it looks different; Ottoman and Byzantine-Ottoman count as one empire. Simulated 30 days on the real history: 29 different empires, none closer than 6 days.
+
 ## 2026-11-26 — one 30+ minute video (owner asked, one time only)
 - Owner: "ek long video banao 30+ minutes ki ... bs ek he video chaye roz roz ni chaye and abi upload kar do".
 - New `long/make-mega.js` (copy of make-long.js): script written chapter by chapter from `long/mega-topic.json` (12 chapters x ~400 words, each fact-checked), voice in 9 chunks (main Gemini key, backup key on 429), uploads PUBLIC at once. No slot guard, no schedule.
