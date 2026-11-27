@@ -88,6 +88,9 @@ function riseOf(t, made) {
 }
 
 const yearText = y => (y < 0 ? `${-y} BC` : y < 1000 ? `${y} AD` : String(y));
+// Earlier Shorts about the same empire (28 Nov: a repeat Rome Short reused the 14 Nov hook "How Rome Conquered the
+// Ancient World" and got 3 views in 15 h, so a repeat must look and sound clearly new).
+const pastOf = id => { const same = id === 'byz_ott' || id === 'ottoman' ? ['ottoman', 'byz_ott'] : [id]; return readHistory().filter(h => same.includes(h.topic)).map(h => h.title).filter(Boolean); };
 const recentTitles = () => { const t = readHistory().slice(-12).map(h => h.title).filter(Boolean); return t.length ? ` (recent: ${t.map(x => `"${x}"`).join(', ')})` : ''; };
 
 function prompt(p) {
@@ -105,8 +108,8 @@ Write:
   * 10 to 18 words per line. ${Math.round((p.years.length + 1) * 13)} to ${Math.round((p.years.length + 1) * 16)} words in total. Simple, vivid English, like a great documentary narrator.
   * Only well-known, true history. No made-up numbers. Dates must match the snapshot years. Neutral tone: no praise or hate of any religion, nation or people.
 - "scenes": exactly ${p.years.length} objects, one per snapshot year, in order: {"markers": [up to 2 famous cities or battle sites that the line for that year talks about, each {"name": "short name", "lat": number, "lon": number}], "arrow": null or {"from": {"lat","lon"}, "to": {"lat","lon"}} for a famous campaign or conquest in that line}. Coordinates must be real (decimal degrees).
-- "hook_text": the on-screen title, 4 to 7 words, a curiosity title different from line 1 (e.g. "How Russia Became the Biggest Country", "The Empire That Ruled 3 Continents").
-- "title": YouTube title under 70 characters with 1 emoji at the end. Use the format that works best on this channel (its top Shorts, 1,200-2,500 views each): "How [the] <Empire> <strong verb phrase>", e.g. "How Rome Conquered the Ancient World 🗺️", "How the Mongol Empire Rose to Greatness 🐎", "How Poland-Lithuania Became Europe's Superpower ⚔️", "How the Khmer Empire Took Over Southeast Asia 🗺️". Put the empire's best-known name first so it is searchable. Do NOT start with "Rise and Fall" or "Why". Do not copy these recent titles word for word${recentTitles()}.
+${pastOf(p.topic.id).length ? `IMPORTANT: this channel already has Shorts about this empire: ${pastOf(p.topic.id).map(x => `"${x}"`).join(", ")}. This one must feel NEW: a different hook line, different rulers, battles and turning points, and a title and hook_text that share no phrase with those.\n` : ""}- "hook_text": the on-screen title, 4 to 7 words, a curiosity title different from line 1 and from every earlier title of this empire (e.g. "From One City to Three Continents", "The Empire That Ruled 3 Continents").
+- "title": YouTube title under 70 characters with 1 emoji at the end. Use the format that works best on this channel (its top Shorts, 1,200-2,500 views each): "How [the] <Empire> <strong verb phrase>", e.g. "How the Mongol Empire Rose to Greatness 🐎", "How Poland-Lithuania Became Europe's Superpower ⚔️", "How the Khmer Empire Took Over Southeast Asia 🗺️" (never copy an example or an earlier title). Put the empire's best-known name first so it is searchable. Do NOT start with "Rise and Fall" or "Why". Do not copy these recent titles word for word${recentTitles()}.
 - "description": 2 short sentences about the video, then a blank line, then 4 hashtags (#history #maps #shorts and one about the empire).
 - "tags": 10 to 14 search tags.
 
@@ -142,6 +145,9 @@ function validate(p, s) {
   if (words < (n + 1) * 9 || words > (n + 1) * 19) throw new Error(`script is ${words} words`);
   const hook = String(s.hook_text || '').trim();
   if (!hook || hook.split(/\s+/).length > 9) throw new Error('bad hook_text');
+  const norm = x => String(x).toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
+  const old = pastOf(p.topic.id).map(norm);
+  if (old.includes(norm(hook)) || old.includes(norm(s.title || ''))) throw new Error('title or hook repeats an earlier Short of this empire');
   return {
     lines, hook_text: hook,
     title: String(s.title || hook).slice(0, 95),
