@@ -1,5 +1,11 @@
 # Changes
 
+## 2026-11-27 (21:45 MY) Shorts back to the week-1 style (owner: "mujh bs wesa he chaye jesy 1000+ view har video ma aty thy jo karna karo")
+- Week 1 (14-20 Nov) every Short got 800-2,500 views: rise stories, famous empires, 45-66 s, up to 7 maps, 10-18 words a line, 1.6 s title first.
+- Undone: the 30-40 s limit (MAX_MAPS 5 -> 7, words per line back to 10-18, total (n+1)*13..16, MAX_VOICE 36 -> 75 s) and the 0.5 s intro / short tail (back to 1.6 s / 2.2 s, outro fade as before).
+- Kept: rise-only picker with famous every other Short (16:30 change). Manual topic (e.g. "roman") now picks that exact empire's rise.
+- Tested on branch week1-test with upload off: 7 maps, voice 61 s, video built fine.
+
 ## 2026-11-27 (16:30 MY) Growth fix: only "rise" Shorts again
 - Owner: "channel down hota jarah hai mujh grow chaye jo error ya galati hai isko fix karo".
 - Found the cause in 44 Shorts of data: every RISE Short (empire growing on the map) got 795-2,503 views, even little-known ones
