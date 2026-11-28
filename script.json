@@ -1,0 +1,92 @@
+{
+  "topic": {
+    "id": "vijayanagara",
+    "label": "VIJAYANAGARA EMPIRE",
+    "name": "the Vijayanagara Empire",
+    "names": [
+      "Vijayanagara"
+    ]
+  },
+  "angle": "rise",
+  "years": [
+    1492,
+    1500,
+    1530
+  ],
+  "lines": [
+    "In 1492, Vijayanagara seemed fragile, torn by coup and war while northern sultanates pressed inward.",
+    "By 1500, general Tuluva Narasa Nayaka seized control, securing vital territories from Karnataka to Rameshwaram.",
+    "By 1530, legendary emperor Krishnadevaraya crushed Bijapur at Raichur and expanded across southern India.",
+    "Vijayanagara stood as southern India's supreme power. Did its rulers build India's greatest medieval capital?"
+  ],
+  "scenes": [
+    {
+      "year": 1492,
+      "markers": [
+        {
+          "name": "Vijayanagara",
+          "lat": 15.335,
+          "lon": 76.46
+        }
+      ],
+      "arrow": null
+    },
+    {
+      "year": 1500,
+      "markers": [
+        {
+          "name": "Goa",
+          "lat": 15.491,
+          "lon": 73.828
+        },
+        {
+          "name": "Rameshwaram",
+          "lat": 9.288,
+          "lon": 79.313
+        }
+      ],
+      "arrow": null
+    },
+    {
+      "year": 1530,
+      "markers": [
+        {
+          "name": "Raichur",
+          "lat": 16.208,
+          "lon": 77.346
+        }
+      ],
+      "arrow": {
+        "from": {
+          "lat": 15.335,
+          "lon": 76.46
+        },
+        "to": {
+          "lat": 16.208,
+          "lon": 77.346
+        }
+      }
+    },
+    {
+      "year": 1530,
+      "markers": [],
+      "arrow": null
+    }
+  ],
+  "hook_text": "Rise of South India's Superpower",
+  "title": "How the Vijayanagara Empire Ruled Southern India 👑",
+  "description": "Discover how the Vijayanagara Empire expanded to dominate southern India during its golden age. Follow its border growth from crisis to peak under Krishnadevaraya.\n\n#history #maps #shorts #vijayanagara\n\nMap borders: historical-basemaps by André Ourednik (GPL-3.0). Narration: AI voice.",
+  "tags": [
+    "vijayanagara empire",
+    "krishnadevaraya",
+    "indian history",
+    "vijayanagara map",
+    "hampi",
+    "battle of raichur",
+    "south indian history",
+    "deccan sultanates",
+    "medieval india",
+    "history shorts",
+    "animated map"
+  ]
+}

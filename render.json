@@ -1,0 +1,93 @@
+{
+  "topic": {
+    "id": "vijayanagara",
+    "label": "VIJAYANAGARA EMPIRE",
+    "name": "the Vijayanagara Empire",
+    "names": [
+      "Vijayanagara"
+    ]
+  },
+  "scenes": [
+    {
+      "year": 1492,
+      "markers": [
+        {
+          "name": "Vijayanagara",
+          "lat": 15.335,
+          "lon": 76.46
+        }
+      ],
+      "arrow": null
+    },
+    {
+      "year": 1500,
+      "markers": [
+        {
+          "name": "Goa",
+          "lat": 15.491,
+          "lon": 73.828
+        },
+        {
+          "name": "Rameshwaram",
+          "lat": 9.288,
+          "lon": 79.313
+        }
+      ],
+      "arrow": null
+    },
+    {
+      "year": 1530,
+      "markers": [
+        {
+          "name": "Raichur",
+          "lat": 16.208,
+          "lon": 77.346
+        }
+      ],
+      "arrow": {
+        "from": {
+          "lat": 15.335,
+          "lon": 76.46
+        },
+        "to": {
+          "lat": 16.208,
+          "lon": 77.346
+        }
+      }
+    },
+    {
+      "year": 1530,
+      "markers": [],
+      "arrow": null
+    }
+  ],
+  "lines": [
+    "In 1492, Vijayanagara seemed fragile, torn by coup and war while northern sultanates pressed inward.",
+    "By 1500, general Tuluva Narasa Nayaka seized control, securing vital territories from Karnataka to Rameshwaram.",
+    "By 1530, legendary emperor Krishnadevaraya crushed Bijapur at Raichur and expanded across southern India.",
+    "Vijayanagara stood as southern India's supreme power. Did its rulers build India's greatest medieval capital?"
+  ],
+  "hook_text": "Rise of South India's Superpower",
+  "line_starts": [
+    1.55,
+    11.059603999999998,
+    20.959333,
+    29.741208
+  ],
+  "line_ends": [
+    8.670854,
+    18.777208,
+    27.925333000000002,
+    36.667896
+  ],
+  "total": 38.867896,
+  "intro": 1.6,
+  "voice_end": 36.667896,
+  "font_serif": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/fonts/Lora-Variable.ttf",
+  "font_bold": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/fonts/Poppins-Bold.ttf",
+  "font_medium": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/fonts/Poppins-Medium.ttf",
+  "data_dir": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/data",
+  "ffmpeg": "ffmpeg",
+  "out": "/home/runner/work/empire-maps-pipeline/empire-maps-pipeline/output/2026-11-29_02-56_vijayanagara-rise/silent.mp4",
+  "seed": 94975
+}
